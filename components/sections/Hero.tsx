@@ -3,13 +3,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  heroSub,
-  heroButton,
-  fadeIn,
-  viewport,
-} from "@/lib/animations";
+import Link from "next/link";
 import { SplineErrorBoundary } from "@/components/SplineErrorBoundary";
 
 // Load @splinetool/react-spline with no SSR — it needs WebGL / browser APIs.
@@ -22,7 +16,7 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 
 // ── Direct .splinecode export URL from the Spline editor ──────────────────────
 const SPLINE_SCENE =
-  "https://prod.spline.design/FAzo7N19-G-dCOsA/scene.splinecode";
+  "https://prod.spline.design/cAUmMStRLg04pjiA/scene.splinecode";
 
 // ── Dark fallback used on mobile and as error boundary child ──────────────────
 function DarkFallback() {
@@ -119,41 +113,22 @@ export default function Hero() {
           {/* ── Text block ──────────────────────────────────────────────────── */}
           <div className="order-2 lg:order-1">
 
-            <motion.p
-              className="text-sm font-semibold tracking-widest uppercase text-indigo-400 mb-4"
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              viewport={viewport}
-            >
+            <p className="text-sm font-semibold tracking-widest uppercase text-indigo-400 mb-4">
               COLLEGE MATHEMATICS CLUB
-            </motion.p>
+            </p>
 
-            <motion.h1
+            <h1
               id="hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6"
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
             >
               Your Headline Here
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              className="text-lg text-zinc-400 leading-relaxed mb-8 max-w-xl"
-              variants={heroSub}
-              initial="hidden"
-              animate="visible"
-            >
+            <p className="text-lg text-zinc-400 leading-relaxed mb-8 max-w-xl">
               Your subheading text goes here.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              variants={heroButton}
-              initial="hidden"
-              animate="visible"
-            >
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="#events"
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-black"
@@ -166,7 +141,7 @@ export default function Hero() {
               >
                 About the Club
               </Link>
-            </motion.div>
+            </div>
           </div>
 
           {/* ── Right-column spacer keeps text left on desktop ──────────────── */}

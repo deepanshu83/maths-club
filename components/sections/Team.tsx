@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Link2 } from "lucide-react";
-import { staggerFast, cardReveal } from "@/lib/animations";
 import AnimatedSection from "@/components/AnimatedSection";
 
 // ─── Team data ────────────────────────────────────────────────────────────────
@@ -40,15 +38,9 @@ export default function Team() {
           </p>
         </AnimatedSection>
 
-        <motion.ul
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
-          role="list"
-          variants={staggerFast}
-          initial="hidden"
-          animate="visible"
-        >
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6" role="list">
           {teamMembers.map((member) => (
-            <motion.li key={member.name} variants={cardReveal}>
+            <li key={member.name}>
               <div className="flex flex-col items-center text-center p-5 rounded-2xl border border-[var(--color-border)] bg-white h-full">
                 <div
                   className="w-20 h-20 rounded-full bg-[var(--color-accent-light)] border-2 border-[var(--color-border)] mb-4 flex items-center justify-center"
@@ -82,9 +74,9 @@ export default function Team() {
                   </a>
                 )}
               </div>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );
