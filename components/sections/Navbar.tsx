@@ -17,18 +17,18 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-[var(--color-border)] backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-black/80 border-b border-white/10 backdrop-blur-md">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+            className="flex items-center gap-2 text-white hover:text-indigo-400 transition-colors"
             aria-label="Maths Club Home"
           >
-            <Sigma className="w-6 h-6 text-[var(--color-accent)]" aria-hidden="true" />
+            <Sigma className="w-6 h-6 text-indigo-400" aria-hidden="true" />
             <span className="text-xl font-bold tracking-tight">
-              Maths<span className="text-[var(--color-accent)]">Club</span>
+              Maths<span className="text-indigo-400">Club</span>
             </span>
           </Link>
 
@@ -38,7 +38,7 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-foreground)] transition-colors"
+                  className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -50,13 +50,13 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="#contact"
-              className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2"
+              className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-black"
             >
               Join / Register
             </Link>
             <button
               type="button"
-              className="md:hidden p-2 rounded-lg text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-card)] transition-colors"
+              className="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
               onClick={() => setMenuOpen((prev) => !prev)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -69,13 +69,13 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div id="mobile-menu" className="md:hidden border-t border-[var(--color-border)] py-3">
+          <div id="mobile-menu" className="md:hidden border-t border-white/10 py-3">
             <ul className="flex flex-col gap-1" role="list">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block px-3 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-card)] rounded-lg transition-colors"
+                    className="block px-3 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}
@@ -85,7 +85,7 @@ export default function Navbar() {
               <li className="pt-2">
                 <Link
                   href="#contact"
-                  className="block px-3 py-2 text-sm font-semibold text-center rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+                  className="block px-3 py-2 text-sm font-semibold text-center rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   Join / Register

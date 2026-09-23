@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -10,30 +12,101 @@ import {
   fadeIn,
   viewport,
 } from "@/lib/animations";
+import { SplineErrorBoundary } from "@/components/SplineErrorBoundary";
 
-// Spline is ready to plug in — just uncomment the import and the <Spline> element below.
-// import Spline from "@splinetool/react-spline";
+// Load @splinetool/react-spline with no SSR — it needs WebGL / browser APIs.
+// We do NOT mark it as suspense:true so it renders null until the JS chunk
+// lands, which is fine because the black background shows through.
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
+  ssr: false,
+  loading: () => null,
+});
+
+// ── Direct .splinecode export URL from the Spline editor ──────────────────────
+const SPLINE_SCENE =
+  "https://prod.spline.design/FAzo7N19-G-dCOsA/scene.splinecode";
 
 const headline = ["Where", "Logic", "Meets", "Infinity"];
 
+// ── Dark fallback used on mobile and as error boundary child ──────────────────
+function DarkFallback() {
+  return (
+    <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-zinc-800" />
+  );
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
 export default function Hero() {
   const shouldReduce = useReducedMotion();
+
+  // Skip Spline on mobile — checked client-side only (avoids SSR mismatch).
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  // Cross-fade the Spline canvas in once the scene reports it is fully loaded.
+  const [splineReady, setSplineReady] = useState(false);
 
   return (
     <section
       id="home"
-      className="relative min-h-[calc(100vh-4rem)] flex items-center"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+      {/* ── Background ────────────────────────────────────────────────────────
+       *  Pure black matches the Spline scene's own background (rgba(0,0,0,1)).
+       *  Also acts as the loading placeholder — zero colour flash on load.
+       * ──────────────────────────────────────────────────────────────────── */}
+      <div className="absolute inset-0 -z-10 bg-black">
+
+        {isMobile ? (
+          <DarkFallback />
+        ) : (
+          <>
+            {/* Loading state — solid black, fades away once scene is ready */}
+            <div
+              className="absolute inset-0 bg-black transition-opacity duration-700 pointer-events-none z-10"
+              style={{ opacity: splineReady ? 0 : 1 }}
+              aria-hidden="true"
+            />
+
+            {/* Spline canvas — absolutely fills the section, fades in on load.
+             *  SplineErrorBoundary catches the synchronous `throw i` that
+             *  react-spline emits when scene loading fails (e.g. network error,
+             *  corrupt file), replacing it silently with DarkFallback.        */}
+            <SplineErrorBoundary fallback={<DarkFallback />}>
+              <Spline
+                scene={SPLINE_SCENE}
+                onLoad={() => setSplineReady(true)}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </SplineErrorBoundary>
+          </>
+        )}
+      </div>
+
+      {/* ── Subtle dark vignette — keeps text legible over bright box edges ── */}
+      <div className="absolute inset-0 bg-black/30 -z-[5]" aria-hidden="true" />
+
+      {/* ── Foreground content ───────────────────────────────────────────────── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* ── Text content ───────────────────────────────────────────────── */}
+          {/* ── Text block ──────────────────────────────────────────────────── */}
           <div className="order-2 lg:order-1">
 
-            {/* Eyebrow label */}
             <motion.p
-              className="text-sm font-semibold tracking-widest uppercase text-[var(--color-accent)] mb-4"
+              className="text-sm font-semibold tracking-widest uppercase text-indigo-400 mb-4"
               variants={fadeIn}
               initial="hidden"
               animate="visible"
@@ -42,21 +115,20 @@ export default function Hero() {
               College Mathematics Club
             </motion.p>
 
-            {/* Headline — each word animates in individually */}
             <motion.h1
               id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-[var(--color-foreground)] mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6"
               variants={shouldReduce ? undefined : staggerSlow}
               initial="hidden"
               animate="visible"
               aria-label="Where Logic Meets Infinity"
             >
-              {headline.map((word, i) => (
+              {headline.map((word) => (
                 <motion.span
                   key={word}
                   variants={shouldReduce ? undefined : wordReveal}
                   className={`inline-block mr-[0.25em] ${
-                    word === "Meets" ? "text-[var(--color-accent)]" : ""
+                    word === "Meets" ? "text-indigo-400" : ""
                   }`}
                 >
                   {word}
@@ -64,9 +136,8 @@ export default function Hero() {
               ))}
             </motion.h1>
 
-            {/* Subheading */}
             <motion.p
-              className="text-lg text-[var(--color-muted)] leading-relaxed mb-8 max-w-xl"
+              className="text-lg text-zinc-400 leading-relaxed mb-8 max-w-xl"
               variants={heroSub}
               initial="hidden"
               animate="visible"
@@ -76,7 +147,6 @@ export default function Hero() {
               grow with us.
             </motion.p>
 
-            {/* CTA buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               variants={heroButton}
@@ -85,57 +155,21 @@ export default function Hero() {
             >
               <Link
                 href="#events"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg bg-indigo-500 text-white hover:bg-indigo-400 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-black"
               >
                 Explore Events
               </Link>
               <Link
                 href="#about"
-                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg border border-[var(--color-border)] text-[var(--color-foreground)] hover:bg-[var(--color-card)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg border border-white/20 text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-black"
               >
                 About the Club
               </Link>
             </motion.div>
           </div>
 
-          {/* ── Spline / visual placeholder ────────────────────────────────── */}
-          <motion.div
-            className="order-1 lg:order-2"
-            variants={shouldReduce ? undefined : {
-              hidden: { opacity: 0, scale: 0.94 },
-              visible: {
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.9, ease: "easeOut", delay: 0.2 },
-              },
-            }}
-            initial="hidden"
-            animate="visible"
-          >
-            <div
-              id="spline-placeholder"
-              className="w-full aspect-square max-w-md mx-auto lg:max-w-none rounded-2xl bg-[var(--color-accent-light)] border border-[var(--color-border)] flex flex-col items-center justify-center gap-4 text-center p-8"
-              aria-hidden="true"
-            >
-              {/*
-               * ─── SPLINE EMBED ─────────────────────────────────────────────
-               * When your scene is ready, replace the placeholder below with:
-               *
-               *   <Spline scene="https://prod.spline.design/YOUR-SCENE-ID/scene.splinecode" />
-               *
-               * The @splinetool/react-spline package is already installed.
-               * ─────────────────────────────────────────────────────────────
-               */}
-              <div className="grid grid-cols-3 gap-6 text-5xl font-bold text-[var(--color-accent)] opacity-25 select-none">
-                {["∞", "∑", "π", "∫", "√", "∂", "∇", "∈", "≡"].map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </div>
-              <p className="text-xs text-[var(--color-muted)] mt-4 font-mono">
-                [ 3D scene placeholder — see comment above ]
-              </p>
-            </div>
-          </motion.div>
+          {/* ── Right-column spacer keeps text left on desktop ──────────────── */}
+          <div className="order-1 lg:order-2 hidden lg:block" aria-hidden="true" />
 
         </div>
       </div>
