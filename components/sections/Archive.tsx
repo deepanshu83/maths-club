@@ -192,18 +192,10 @@ export default function Archive() {
                 </div>
 
                 {/* Events list — framer-motion stagger */}
-                <motion.ul
-                  className="space-y-4"
-                  role="list"
-                  variants={staggerFast}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={viewport}
-                >
+                <ul className="space-y-4" role="list">
                   {yearGroup.events.map((event) => (
-                    <motion.li
+                    <li
                       key={event.name}
-                      variants={cardReveal}
                       className="flex flex-col sm:flex-row sm:items-start gap-4 p-5 rounded-xl border border-[var(--color-border)] bg-white"
                     >
                       <div className="flex flex-col gap-1 sm:w-36 shrink-0">
@@ -226,9 +218,9 @@ export default function Archive() {
                           {event.summary}
                         </p>
                       </div>
-                    </motion.li>
+                    </li>
                   ))}
-                </motion.ul>
+                </ul>
 
               </div>
             ))}

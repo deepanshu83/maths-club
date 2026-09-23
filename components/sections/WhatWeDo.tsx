@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Trophy, BookOpen, Users, FlaskConical } from "lucide-react";
-import { staggerFast, cardReveal, fadeUp, viewport } from "@/lib/animations";
+import { staggerFast, cardReveal, viewport } from "@/lib/animations";
 import AnimatedSection from "@/components/AnimatedSection";
+import TiltCard from "@/components/TiltCard";
 
 const activities = [
   {
@@ -59,45 +60,33 @@ export default function WhatWeDo() {
         </AnimatedSection>
 
         {/* Cards — staggered reveal */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={staggerFast}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {activities.map((activity) => {
             const Icon = activity.icon;
             return (
-              <motion.div
-                key={activity.title}
-                variants={cardReveal}
-                whileHover={{
-                  y: -6,
-                  boxShadow: "0 12px 32px -8px rgb(79 70 229 / 0.15)",
-                  borderColor: "var(--color-accent)",
-                  transition: { duration: 0.22, ease: "easeOut" },
-                }}
-                className="group relative p-6 rounded-2xl border border-[var(--color-border)] bg-white cursor-default"
-              >
-                {/* Icon */}
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-accent-light)] mb-4 group-hover:bg-[var(--color-accent)] transition-colors duration-200">
-                  <Icon
-                    className="w-6 h-6 text-[var(--color-accent)] group-hover:text-white transition-colors duration-200"
-                    aria-hidden="true"
-                  />
-                </div>
+              <div key={activity.title} className="h-full">
+                <TiltCard className="h-full">
+                  <div className="group relative h-full p-6 rounded-2xl border border-[var(--color-border)] bg-white cursor-default shadow-[0_0_0_rgba(0,0,0,0)] transition-colors duration-200">
+                    {/* Icon */}
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-accent-light)] mb-4 group-hover:bg-[var(--color-accent)] transition-colors duration-200">
+                      <Icon
+                        className="w-6 h-6 text-[var(--color-accent)] group-hover:text-white transition-colors duration-200"
+                        aria-hidden="true"
+                      />
+                    </div>
 
-                <h3 className="text-lg font-semibold text-[var(--color-foreground)] mb-2">
-                  {activity.title}
-                </h3>
-                <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                  {activity.description}
-                </p>
-              </motion.div>
+                    <h3 className="text-lg font-semibold text-[var(--color-foreground)] mb-2">
+                      {activity.title}
+                    </h3>
+                    <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                      {activity.description}
+                    </p>
+                  </div>
+                </TiltCard>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
       </div>
     </section>

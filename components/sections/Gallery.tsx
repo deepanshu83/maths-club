@@ -44,22 +44,10 @@ export default function Gallery() {
         </AnimatedSection>
 
         {/* Masonry-style grid — staggered */}
-        <motion.div
-          className="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4"
-          variants={staggerFast}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
+        <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 space-y-4">
           {galleryItems.map((item) => (
-            <motion.div
+            <div
               key={item.id}
-              variants={cardReveal}
-              whileHover={{
-                scale: 1.03,
-                boxShadow: "0 12px 28px -8px rgb(79 70 229 / 0.15)",
-                transition: { duration: 0.22, ease: "easeOut" },
-              }}
               className={`break-inside-avoid w-full ${item.aspectClass} rounded-xl bg-[var(--color-accent-light)] border border-[var(--color-border)] flex items-center justify-center cursor-pointer overflow-hidden`}
               role="img"
               aria-label={item.label}
@@ -68,9 +56,9 @@ export default function Gallery() {
               <span className="text-xs text-[var(--color-muted)] font-mono text-center px-3">
                 photo #{item.id}
               </span>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

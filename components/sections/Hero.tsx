@@ -3,10 +3,8 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  staggerSlow,
-  wordReveal,
   heroSub,
   heroButton,
   fadeIn,
@@ -26,8 +24,6 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 const SPLINE_SCENE =
   "https://prod.spline.design/FAzo7N19-G-dCOsA/scene.splinecode";
 
-const headline = ["Where", "Logic", "Meets", "Infinity"];
-
 // ── Dark fallback used on mobile and as error boundary child ──────────────────
 function DarkFallback() {
   return (
@@ -37,13 +33,14 @@ function DarkFallback() {
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 export default function Hero() {
-  const shouldReduce = useReducedMotion();
-
   // Skip Spline on mobile — checked client-side only (avoids SSR mismatch).
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 767px)").matches;
+  });
+
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
@@ -98,6 +95,23 @@ export default function Hero() {
       {/* ── Subtle dark vignette — keeps text legible over bright box edges ── */}
       <div className="absolute inset-0 bg-black/30 -z-[5]" aria-hidden="true" />
 
+      {/* ── Spline watermark overlay — hides the "Built with Spline" badge ───
+       *  Sits above the Spline canvas (-z-10) but below page content (z-10).
+       *  pointer-events: none so it never blocks interaction with the scene.  */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          width: 200,
+          height: 55,
+          backgroundColor: "#000000",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* ── Foreground content ───────────────────────────────────────────────── */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -112,28 +126,17 @@ export default function Hero() {
               animate="visible"
               viewport={viewport}
             >
-              College Mathematics Club
+              COLLEGE MATHEMATICS CLUB
             </motion.p>
 
             <motion.h1
               id="hero-heading"
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6"
-              variants={shouldReduce ? undefined : staggerSlow}
+              variants={fadeIn}
               initial="hidden"
               animate="visible"
-              aria-label="Where Logic Meets Infinity"
             >
-              {headline.map((word) => (
-                <motion.span
-                  key={word}
-                  variants={shouldReduce ? undefined : wordReveal}
-                  className={`inline-block mr-[0.25em] ${
-                    word === "Meets" ? "text-indigo-400" : ""
-                  }`}
-                >
-                  {word}
-                </motion.span>
-              ))}
+              Your Headline Here
             </motion.h1>
 
             <motion.p
@@ -142,9 +145,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
             >
-              A community for students who love mathematics — from elegant proofs
-              to real-world problem solving. Challenge yourself, compete, and
-              grow with us.
+              Your subheading text goes here.
             </motion.p>
 
             <motion.div

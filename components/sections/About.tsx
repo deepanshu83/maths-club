@@ -40,13 +40,7 @@ export default function About() {
             </div>
 
             {/* Vision / Mission cards — staggered */}
-            <motion.div
-              className="mt-8 grid sm:grid-cols-2 gap-4"
-              variants={staggerFast}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewport}
-            >
+            <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {[
                 {
                   title: "Our Vision",
@@ -57,18 +51,17 @@ export default function About() {
                   body: "Organise events, workshops, and competitions that challenge students and connect them to the broader mathematics community.",
                 },
               ].map((card) => (
-                <motion.div
+                <div
                   key={card.title}
-                  variants={cardReveal}
                   className="p-4 rounded-xl border border-[var(--color-border)] bg-white"
                 >
                   <h3 className="font-semibold text-[var(--color-foreground)] mb-1">
                     {card.title}
                   </h3>
                   <p className="text-sm text-[var(--color-muted)]">{card.body}</p>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </AnimatedSection>
 
           {/* ── Visual placeholder ── slides in from the right */}
