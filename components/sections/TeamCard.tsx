@@ -89,7 +89,7 @@ export default function TeamCard({ member, onSelect }: TeamCardProps) {
             }
           }}
         >
-          <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border)] bg-white h-full transition-colors duration-200 hover:border-[var(--color-accent)]/40">
+          <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-background)] h-full transition-colors duration-200 hover:border-[var(--color-accent)]/40">
             {/* Avatar — carries the layoutId that will be matched in the modal */}
             <div className="mb-4">
               {member.photo ? (

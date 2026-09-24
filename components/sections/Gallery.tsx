@@ -48,7 +48,7 @@ export default function Gallery() {
           {galleryItems.map((item) => (
             <div
               key={item.id}
-              className={`break-inside-avoid w-full ${item.aspectClass} rounded-xl bg-[var(--color-accent-light)] border border-[var(--color-border)] flex items-center justify-center cursor-pointer overflow-hidden`}
+              className={`break-inside-avoid w-full ${item.aspectClass} rounded-xl bg-[var(--color-accent-light)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/40 flex items-center justify-center cursor-pointer overflow-hidden transition-colors`}
               role="img"
               aria-label={item.label}
             >

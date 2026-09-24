@@ -7,16 +7,17 @@
   /* Fonts */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --font-hand: var(--font-hand), cursive;
 
-  /* Color palette — strict: white bg, near-black text, one indigo accent */
-  --color-background: #ffffff;
-  --color-foreground: #0f0f13;
-  --color-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-card: #f9fafb;
-  --color-accent: #4f46e5;
-  --color-accent-hover: #4338ca;
-  --color-accent-light: #eef2ff;
+  /* Color palette — warm ember-dark palette tilted towards orange */
+  --color-background: #0a0604;
+  --color-foreground: #faf5f0;
+  --color-muted: #b8a69a;
+  --color-border: rgba(234, 88, 12, 0.16);
+  --color-card: #140d08;
+  --color-accent: #ea580c;
+  --color-accent-hover: #f97316;
+  --color-accent-light: rgba(234, 88, 12, 0.18);
 }
 
 html {
@@ -33,4 +34,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+.font-hand {
+  font-family: var(--font-hand);
 }

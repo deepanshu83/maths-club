@@ -1,82 +1,98 @@
 "use client";
 
-import { Link2 } from "lucide-react";
+import { AnimatedTeam } from "@/components/ui/animated-team";
+import type { TeamMember } from "@/components/ui/animated-team";
 import AnimatedSection from "@/components/AnimatedSection";
 
-// ─── Team data ────────────────────────────────────────────────────────────────
-const teamMembers = [
-  { name: "Priya Sharma", role: "President", linkedin: null },
-  { name: "Arjun Mehta", role: "Vice President", linkedin: null },
-  { name: "Sneha Iyer", role: "Events Coordinator", linkedin: null },
-  { name: "Rahul Gupta", role: "Treasurer", linkedin: null },
-  { name: "Kavya Nair", role: "Workshop Lead", linkedin: null },
-  { name: "Dev Patel", role: "Design & Media", linkedin: null },
-  { name: "Ananya Reddy", role: "Outreach", linkedin: null },
-  { name: "Rohan Verma", role: "Tech & Website", linkedin: null },
+// ── Team data ─────────────────────────────────────────────────────────────────
+// TODO: replace placeholder Unsplash photos with real team photos once available
+// TODO: replace placeholder names/bios/roles/links with real team data
+const teamMembersData: TeamMember[] = [
+  {
+    name: "Priya Sharma", // TODO: real name
+    role: "President",
+    bio: "Leads the club's overall vision, strategy, and events calendar. Passionate about olympiad mathematics and number theory. She believes every great proof starts with a bold question.",
+    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined, // TODO: add real LinkedIn URL
+    instagram: undefined,
+  },
+  {
+    name: "Arjun Mehta", // TODO: real name
+    role: "Vice President",
+    bio: "Coordinates between sub-teams and oversees logistics for all club activities. Interested in combinatorics and graph theory. Arjun turns complex schedules into elegant solutions.",
+    photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined, // TODO: add real LinkedIn URL
+    instagram: undefined,
+  },
+  {
+    name: "Dr. Sunita Rao", // TODO: real name
+    role: "Faculty Coordinator",
+    bio: "Faculty mentor guiding the club's academic direction. Specialises in abstract algebra and topology. Her office door is always open — especially if you bring an unsolved problem.",
+    photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined,
+    instagram: undefined,
+  },
+  {
+    name: "Sneha Iyer", // TODO: real name
+    role: "Events Coordinator",
+    bio: "Plans and executes club competitions, workshops, and guest sessions. Enthusiastic about applied mathematics and statistics. If there's an event happening, Sneha made it happen.",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined,
+    instagram: undefined,
+  },
+  {
+    name: "Rahul Gupta", // TODO: real name
+    role: "Events Coordinator",
+    bio: "Handles outreach, participant registrations, and on-ground logistics for events. Keen interest in probability theory. Rahul keeps the chaos beautifully under control.",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined,
+    instagram: undefined,
+  },
+  {
+    name: "Kavya Nair", // TODO: real name
+    role: "Core Team — Design & Media",
+    bio: "Manages all club branding, social media content, and event graphics. Loves the intersection of mathematics and visual art. Kavya proves that beauty and logic are the same thing.",
+    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80", // TODO: replace with real team photo
+    linkedin: undefined,
+    instagram: undefined,
+  },
 ];
+
+// ── Team Section ──────────────────────────────────────────────────────────────
 
 export default function Team() {
   return (
     <section
       id="team"
-      className="py-16 lg:py-24 bg-[var(--color-card)]"
+      className="min-h-screen py-10 relative overflow-hidden bg-[#0a0604] flex items-center"
       aria-labelledby="team-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection variant="fadeUp" className="text-center mb-10 lg:mb-14">
-          <p className="text-sm font-semibold tracking-widest uppercase text-[var(--color-accent)] mb-3">
-            The Team
-          </p>
+      {/* Background image with reduced opacity + less zoom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/teamback.jfif')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.45,
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection variant="fadeUp" className="text-center mb-8">
           <h2
             id="team-heading"
             className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)]"
           >
             People Behind the Club
           </h2>
-          <p className="mt-4 text-[var(--color-muted)] max-w-xl mx-auto">
-            Passionate students who keep the math alive on campus.
-          </p>
         </AnimatedSection>
 
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6" role="list">
-          {teamMembers.map((member) => (
-            <li key={member.name}>
-              <div className="flex flex-col items-center text-center p-5 rounded-2xl border border-[var(--color-border)] bg-white h-full">
-                <div
-                  className="w-20 h-20 rounded-full bg-[var(--color-accent-light)] border-2 border-[var(--color-border)] mb-4 flex items-center justify-center"
-                  aria-label={`${member.name} photo placeholder`}
-                >
-                  <span
-                    className="text-2xl font-bold text-[var(--color-accent)] select-none"
-                    aria-hidden="true"
-                  >
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
-                </div>
-
-                <h3 className="font-semibold text-[var(--color-foreground)] text-sm leading-snug">
-                  {member.name}
-                </h3>
-                <p className="text-xs text-[var(--color-muted)] mt-0.5">{member.role}</p>
-
-                {member.linkedin && (
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
-                    aria-label={`${member.name} on LinkedIn`}
-                  >
-                    <Link2 className="w-4 h-4" aria-hidden="true" />
-                  </a>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
+        <AnimatedSection variant="fadeUp">
+          <AnimatedTeam members={teamMembersData} autoplay={false} />
+        </AnimatedSection>
       </div>
     </section>
   );

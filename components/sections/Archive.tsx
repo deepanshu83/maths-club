@@ -53,9 +53,9 @@ const archiveData = [
 ];
 
 const typeBadgeClass: Record<string, string> = {
-  Competition: "bg-[var(--color-accent-light)] text-[var(--color-accent)]",
-  Workshop: "bg-amber-50 text-amber-700",
-  Exhibition: "bg-emerald-50 text-emerald-700",
+  Competition: "bg-[var(--color-accent-light)] text-[var(--color-accent)] border border-[var(--color-accent)]/20",
+  Workshop: "bg-amber-950/40 text-amber-400 border border-amber-800/30",
+  Exhibition: "bg-emerald-950/40 text-emerald-400 border border-emerald-800/30",
 };
 
 export default function Archive() {
@@ -180,7 +180,7 @@ export default function Archive() {
                 <div className="flex items-center gap-4 mb-6 relative">
                   {/* Dot on spine */}
                   <div
-                    className="archive-dot absolute -left-[2.875rem] hidden sm:flex w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-white shadow-md items-center justify-center"
+                    className="archive-dot absolute -left-[2.875rem] hidden sm:flex w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-black shadow-md items-center justify-center"
                     aria-hidden="true"
                     style={{ opacity: 0 }}
                   />
@@ -196,7 +196,7 @@ export default function Archive() {
                   {yearGroup.events.map((event) => (
                     <li
                       key={event.name}
-                      className="flex flex-col sm:flex-row sm:items-start gap-4 p-5 rounded-xl border border-[var(--color-border)] bg-white"
+                      className="flex flex-col sm:flex-row sm:items-start gap-4 p-5 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] hover:border-[var(--color-accent)]/40 transition-colors"
                     >
                       <div className="flex flex-col gap-1 sm:w-36 shrink-0">
                         <time className="text-sm font-medium text-[var(--color-foreground)]">
@@ -204,7 +204,7 @@ export default function Archive() {
                         </time>
                         <span
                           className={`inline-flex self-start px-2 py-0.5 text-xs font-semibold rounded-full ${
-                            typeBadgeClass[event.type] ?? "bg-gray-100 text-gray-600"
+                            typeBadgeClass[event.type] ?? "bg-white/5 text-[var(--color-muted)] border border-[var(--color-border)]"
                           }`}
                         >
                           {event.type}

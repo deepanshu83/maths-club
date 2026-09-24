@@ -14,7 +14,7 @@ const currentYear = new Date().getFullYear();
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border)] bg-white" role="contentinfo">
+    <footer className="border-t border-[var(--color-border)] bg-[var(--color-background)]" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {/* Brand column */}

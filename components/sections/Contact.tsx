@@ -61,7 +61,7 @@ export default function Contact() {
             href="#" // TODO: replace with Google Form or membership form URL
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2"
+            className="inline-flex items-center gap-2 px-7 py-3 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
             whileHover={{
               scale: 1.04,
               backgroundColor: "var(--color-accent-hover)",
