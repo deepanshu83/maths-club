@@ -7,7 +7,6 @@
   /* Fonts */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-hand: var(--font-hand), cursive;
 
   /* Color palette — warm ember-dark palette tilted towards orange */
   --color-background: #0a0604;
@@ -34,8 +33,4 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-}
-
-.font-hand {
-  font-family: var(--font-hand);
 }
