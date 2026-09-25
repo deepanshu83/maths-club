@@ -6,9 +6,9 @@ import { fadeUp, heroButton, viewport } from "@/lib/animations";
 import AnimatedSection from "@/components/AnimatedSection";
 
 const socialLinks = [
-  { label: "Instagram", href: "#", icon: Globe },   // TODO: replace with actual Instagram URL
-  { label: "Twitter / X", href: "#", icon: Share2 }, // TODO: replace with actual Twitter/X URL
-  { label: "Email", href: "mailto:mathsclub@college.edu", icon: Mail }, // TODO: replace with actual email
+  { label: "Instagram", href: "#", icon: Globe },
+  { label: "Twitter / X", href: "#", icon: Share2 },
+  { label: "Email", href: "mailto:mathsclub.bkbiet@gmail.com", icon: Mail },
 ];
 
 export default function Contact() {
@@ -42,15 +42,14 @@ export default function Contact() {
         <AnimatedSection variant="fadeUp" delay={0.1}>
           <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-6 mb-8 text-sm text-[var(--color-muted)]">
             <span className="font-medium text-[var(--color-foreground)]">
-              {/* TODO: replace with actual college name */}
-              ABC College of Engineering &amp; Technology
+              BK Birla Institute of Engineering &amp; Technology, Pilani
             </span>
             <span className="hidden sm:block text-[var(--color-border)]">|</span>
             <a
-              href="mailto:mathsclub@college.edu"
+              href="mailto:mathsclub.bkbiet@gmail.com"
               className="hover:text-[var(--color-accent)] transition-colors"
             >
-              mathsclub@college.edu {/* TODO: replace with actual email */}
+              mathsclub.bkbiet@gmail.com
             </a>
           </div>
         </AnimatedSection>

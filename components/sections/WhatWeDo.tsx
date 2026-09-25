@@ -1,35 +1,30 @@
-"use client";
+import Image from "next/image";
+import { Trophy, FlaskConical, BookOpen, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-import { motion } from "framer-motion";
-import { Trophy, BookOpen, Users, FlaskConical } from "lucide-react";
-import { staggerFast, cardReveal, viewport } from "@/lib/animations";
-import AnimatedSection from "@/components/AnimatedSection";
-import TiltCard from "@/components/TiltCard";
+// Flip to "right" to swap content and art column positions
+const SIDE: "left" | "right" = "left";
 
 const activities = [
   {
     icon: Trophy,
-    title: "Mathematical Challenges",
-    description:
-      "Weekly problem sets ranging from accessible puzzles to olympiad-level challenges. Test your limits, compete with peers, and celebrate creative solutions.",
+    title: "Challenges",
+    description: "Weekly problem sets that push your logical boundaries.",
   },
   {
     icon: FlaskConical,
     title: "Competitions",
-    description:
-      "We participate in and organise inter-college math competitions, giving students a platform to showcase their skills at a broader level.",
+    description: "Inter-college contests to test and showcase your skills.",
   },
   {
     icon: BookOpen,
     title: "Workshops",
-    description:
-      "Hands-on sessions on topics like number theory, combinatorics, graph theory, and applied mathematics — led by students and faculty alike.",
+    description: "Hands-on sessions on number theory, combinatorics, and algorithms.",
   },
   {
     icon: Users,
     title: "Community",
-    description:
-      "A welcoming environment for everyone — whether you're a beginner or a math olympian. Connect, collaborate, and grow together.",
+    description: "A collaborative circle of thinkers sharing ideas and growing.",
   },
 ];
 
@@ -37,57 +32,116 @@ export default function WhatWeDo() {
   return (
     <section
       id="what-we-do"
-      className="py-16 lg:py-24"
+      className="relative z-[2] pt-12 pb-8 lg:pt-16 lg:pb-10 bg-transparent"
       aria-labelledby="what-we-do-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <AnimatedSection variant="fadeUp" className="text-center mb-12 lg:mb-16">
-          <p className="text-sm font-semibold tracking-widest uppercase text-[var(--color-accent)] mb-3">
-            What We Do
-          </p>
-          <h2
-            id="what-we-do-heading"
-            className="text-3xl sm:text-4xl font-bold text-[var(--color-foreground)]"
+      <div className="max-w-6xl mx-auto px-6">
+        <div
+          className={cn(
+            "grid grid-cols-1 items-center gap-8 lg:gap-12",
+            SIDE === "left"
+              ? "lg:grid-cols-[1.15fr_0.85fr]"
+              : "lg:grid-cols-[0.85fr_1.15fr]"
+          )}
+        >
+          {/* Content Column (Left) */}
+          <div
+            className={cn(
+              "relative z-10",
+              SIDE === "left" ? "order-1" : "order-1 lg:order-2"
+            )}
           >
-            More Than Just Numbers
-          </h2>
-          <p className="mt-4 text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
-            From intense problem-solving sessions to collaborative workshops, we
-            offer a range of activities for every level of enthusiasm.
-          </p>
-        </AnimatedSection>
+            <h2
+              id="what-we-do-heading"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-8"
+            >
+              More than just numbers
+            </h2>
 
-        {/* Cards — staggered reveal */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {activities.map((activity) => {
-            const Icon = activity.icon;
-            return (
-              <div key={activity.title} className="h-full">
-                <TiltCard className="h-full">
-                  <div className="group relative h-full p-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] hover:border-[var(--color-accent)]/40 cursor-default transition-all duration-200">
-                    {/* Icon */}
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-accent-light)] mb-4 group-hover:bg-[var(--color-accent)] transition-colors duration-200">
-                      <Icon
-                        className="w-6 h-6 text-[var(--color-accent)] group-hover:text-black transition-colors duration-200"
-                        aria-hidden="true"
-                      />
+            {/* 4 Items in clean 2x2 grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+              {activities.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="group relative z-10 flex items-start gap-3.5 bg-[#0f0906] p-3 rounded-xl border border-[var(--color-border)] shadow-md"
+                  >
+                    <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--color-accent-light)] text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-black transition-colors duration-200 motion-reduce:transition-none">
+                      <Icon className="w-5 h-5" aria-hidden="true" />
                     </div>
-
-                    <h3 className="text-lg font-semibold text-[var(--color-foreground)] mb-2">
-                      {activity.title}
-                    </h3>
-                    <p className="text-sm text-[var(--color-muted)] leading-relaxed">
-                      {activity.description}
-                    </p>
+                    <div>
+                      <h3 className="font-semibold text-white text-base mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--color-muted)] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </TiltCard>
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
+          </div>
 
+          {/* Art Column (Right) — spider.png at top of wrapper */}
+          <div
+            className={cn(
+              "hidden lg:flex relative",
+              SIDE === "left" ? "order-2 justify-end" : "order-2 lg:order-1 justify-start"
+            )}
+          >
+            <div className="relative w-[260px] min-h-[520px] justify-self-end flex flex-col justify-start">
+              {/* Spider-Man Image (z-5, above thread at z-0) */}
+              <Image
+                src="/spider.png"
+                alt="Spider-Man gripping thread"
+                width={260}
+                height={428}
+                priority
+                className="pointer-events-none select-none relative z-[5]"
+              />
+
+              {/* Physics Annotations */}
+              {/* 1. LEFT, top: 40px */}
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 hidden lg:block"
+                style={{ right: "calc(100% - 56px)", top: "40px" }}
+                aria-hidden="true"
+              >
+                m<sub>s</sub> = 70 kg
+              </div>
+
+              {/* 2. LEFT, top: 190px */}
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 hidden lg:block"
+                style={{ right: "calc(100% - 56px)", top: "190px" }}
+                aria-hidden="true"
+              >
+                for Spider-Man:<br />
+                T<sub>1</sub> = m<sub>s</sub>g + T<sub>2</sub> ①
+              </div>
+
+              {/* 3. RIGHT, top: 30px */}
+              <div
+                className="absolute whitespace-nowrap text-left font-hand text-[22px] pointer-events-none z-10 select-none rotate-1 hidden lg:block"
+                style={{ left: "140px", top: "30px" }}
+                aria-hidden="true"
+              >
+                <span
+                  className="inline-block text-[#ea580c] font-semibold"
+                  style={{
+                    border: "1.5px solid #ea580c",
+                    padding: "2px 10px",
+                    borderRadius: "6px 10px 8px 12px",
+                  }}
+                >
+                  T<sub>1</sub> = 1200 N
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
