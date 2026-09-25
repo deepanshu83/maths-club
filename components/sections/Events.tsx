@@ -133,7 +133,7 @@ export default function Events() {
 
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 lg:hidden"
-                style={{ right: "calc(100% - 20px)", top: "18px" }}
+                style={{ right: "calc(100% - 10px)", top: "12px" }}
                 aria-hidden="true"
               >
                 for MJ:<br />
@@ -142,7 +142,7 @@ export default function Events() {
 
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 lg:hidden"
-                style={{ right: "calc(100% - 18px)", top: "110px" }}
+                style={{ right: "calc(100% - 8px)", top: "100px" }}
                 aria-hidden="true"
               >
                 m′ = 50 kg
@@ -150,7 +150,7 @@ export default function Events() {
 
               <div
                 className="absolute whitespace-nowrap text-left font-hand text-[11px] pointer-events-none z-10 select-none -rotate-1 lg:hidden"
-                style={{ left: "88px", top: "16px" }}
+                style={{ left: "96px", top: "12px" }}
                 aria-hidden="true"
               >
                 <div className="text-[#f5e9dc]/85 mb-1">T<sub>2</sub> = 50 × 10</div>
@@ -170,7 +170,7 @@ export default function Events() {
 
               <div
                 className="absolute whitespace-nowrap text-left font-hand text-[11px] pointer-events-none z-10 select-none rotate-1 lg:hidden"
-                style={{ left: "88px", top: "110px" }}
+                style={{ left: "96px", top: "100px" }}
                 aria-hidden="true"
               >
                 <div className="text-[#f5e9dc]/85 mb-1">T<sub>1</sub> = 70×10 + 500</div>
