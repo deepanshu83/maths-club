@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-20 lg:py-32 overflow-hidden bg-black flex items-center justify-center min-h-[75vh]"
+      className="relative py-12 sm:py-16 lg:py-32 overflow-hidden bg-black flex items-center justify-center min-h-[75vh]"
       aria-labelledby="about-heading"
     >
       {/* Spider-Man background image — clear, unblurred, as requested */}
@@ -34,7 +34,7 @@ export default function About() {
             </p>
             <h2
               id="about-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-md"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-md leading-tight"
             >
               A Space for Mathematical Minds
             </h2>

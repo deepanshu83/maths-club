@@ -47,7 +47,7 @@ export default function Contact() {
             <span className="hidden sm:block text-[var(--color-border)]">|</span>
             <a
               href="mailto:mathsclub.bkbiet@gmail.com"
-              className="hover:text-[var(--color-accent)] transition-colors"
+              className="hover:text-[var(--color-accent)] transition-colors break-all"
             >
               mathsclub.bkbiet@gmail.com
             </a>
@@ -60,7 +60,7 @@ export default function Contact() {
             href="#" // TODO: replace with Google Form or membership form URL
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
+            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3 text-base font-semibold rounded-lg bg-[var(--color-accent)] text-black focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
             whileHover={{
               scale: 1.04,
               backgroundColor: "var(--color-accent-hover)",
@@ -75,14 +75,14 @@ export default function Contact() {
 
         {/* Social links */}
         <AnimatedSection variant="fadeUp" delay={0.3}>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             {socialLinks.map(({ label, href, icon: Icon }) => (
               <motion.a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-full border border-[var(--color-border)] text-[var(--color-muted)]"
+                className="flex items-center justify-center w-11 h-11 rounded-full border border-[var(--color-border)] text-[var(--color-muted)]"
                 aria-label={label}
                 whileHover={{
                   color: "var(--color-accent)",

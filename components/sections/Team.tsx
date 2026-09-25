@@ -64,7 +64,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="min-h-screen py-10 relative overflow-hidden bg-[#0a0604] flex items-center"
+      className="min-h-[80vh] py-12 md:min-h-screen md:py-10 relative overflow-hidden bg-[#0a0604] flex items-center"
       aria-labelledby="team-heading"
     >
       {/* Background image with reduced opacity + less zoom */}

@@ -32,10 +32,10 @@ export default function WhatWeDo() {
   return (
     <section
       id="what-we-do"
-      className="relative z-[2] pt-12 pb-8 lg:pt-16 lg:pb-10 bg-transparent"
+      className="relative z-[2] pt-12 pb-10 sm:pt-14 lg:pt-16 lg:pb-10 bg-transparent"
       aria-labelledby="what-we-do-heading"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div
           className={cn(
             "grid grid-cols-1 items-center gap-8 lg:gap-12",
@@ -87,11 +87,11 @@ export default function WhatWeDo() {
           {/* Art Column (Right) — spider.png at top of wrapper */}
           <div
             className={cn(
-              "hidden lg:flex relative",
-              SIDE === "left" ? "order-2 justify-end" : "order-2 lg:order-1 justify-start"
+              "relative flex justify-center lg:justify-end",
+              SIDE === "left" ? "order-2 lg:order-2" : "order-2 lg:order-1"
             )}
           >
-            <div className="relative w-[260px] min-h-[520px] justify-self-end flex flex-col justify-start">
+            <div className="relative mx-auto w-full max-w-[240px] lg:w-[260px] lg:min-h-[520px] lg:justify-self-end flex flex-col justify-start">
               {/* Spider-Man Image (z-5, above thread at z-0) */}
               <Image
                 src="/spider.png"
@@ -99,11 +99,44 @@ export default function WhatWeDo() {
                 width={260}
                 height={428}
                 priority
-                className="pointer-events-none select-none relative z-[5]"
+                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none"
               />
 
               {/* Physics Annotations */}
-              {/* 1. LEFT, top: 40px */}
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 lg:hidden"
+                style={{ right: "calc(100% - 28px)", top: "26px" }}
+                aria-hidden="true"
+              >
+                m<sub>s</sub> = 70 kg
+              </div>
+
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 lg:hidden"
+                style={{ right: "calc(100% - 20px)", top: "120px" }}
+                aria-hidden="true"
+              >
+                for Spider-Man:<br />
+                T<sub>1</sub> = m<sub>s</sub>g + T<sub>2</sub>
+              </div>
+
+              <div
+                className="absolute whitespace-nowrap text-left font-hand text-[11px] pointer-events-none z-10 select-none rotate-1 lg:hidden"
+                style={{ left: "110px", top: "20px" }}
+                aria-hidden="true"
+              >
+                <span
+                  className="inline-block text-[#ea580c] font-semibold"
+                  style={{
+                    border: "1.5px solid #ea580c",
+                    padding: "2px 8px",
+                    borderRadius: "6px 10px 8px 12px",
+                  }}
+                >
+                  T<sub>1</sub> = 1200 N
+                </span>
+              </div>
+
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 hidden lg:block"
                 style={{ right: "calc(100% - 56px)", top: "40px" }}
@@ -112,7 +145,6 @@ export default function WhatWeDo() {
                 m<sub>s</sub> = 70 kg
               </div>
 
-              {/* 2. LEFT, top: 190px */}
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 hidden lg:block"
                 style={{ right: "calc(100% - 56px)", top: "190px" }}
@@ -122,7 +154,6 @@ export default function WhatWeDo() {
                 T<sub>1</sub> = m<sub>s</sub>g + T<sub>2</sub> ①
               </div>
 
-              {/* 3. RIGHT, top: 30px */}
               <div
                 className="absolute whitespace-nowrap text-left font-hand text-[22px] pointer-events-none z-10 select-none rotate-1 hidden lg:block"
                 style={{ left: "140px", top: "30px" }}

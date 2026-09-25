@@ -58,59 +58,67 @@ export function AnimatedTeam({
     return () => clearInterval(interval);
   }, [autoplay, handleNext]);
 
-  const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
+  const getStackRotation = (index: number) => {
+    const rotations = [-9, 8, 5, -7, 10, -4, 3, -6];
+    return rotations[index % rotations.length];
+  };
 
   return (
     <div className="w-full mx-auto px-2 py-4 font-[var(--font-body)] antialiased">
       <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
 
         {/* ── Left: stacked rotating photo stack ── */}
-        <div>
+        <div className="order-1 md:order-1">
           {/* h-[42vh] scales with viewport so it always fits on screen */}
-          <div className="relative h-[42vh] w-full max-w-[280px] mx-auto">
+          <div className="relative h-[30vh] sm:h-[36vh] md:h-[42vh] w-full max-w-[240px] sm:max-w-[280px] mx-auto">
             <AnimatePresence>
-              {members.map((member, index) => (
-                <motion.div
-                  key={member.photo}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: randomRotateY(),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index) ? 999 : members.length + 2 - index,
-                    y: isActive(index) ? [0, -30, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="absolute inset-0 origin-bottom rounded-3xl overflow-hidden shadow-2xl"
-                >
-                  <Image
-                    src={member.photo}
-                    alt={member.name}
-                    width={500}
-                    height={700}
-                    draggable={false}
-                    className="h-full w-full object-cover object-top"
-                  />
-                </motion.div>
-              ))}
+              {members.map((member, index) => {
+                const stackRotation = getStackRotation(index);
+                const active = isActive(index);
+
+                return (
+                  <motion.div
+                    key={member.photo}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: -100,
+                      rotate: stackRotation,
+                    }}
+                    animate={{
+                      opacity: active ? 1 : 0.7,
+                      scale: active ? 1 : 0.95,
+                      z: active ? 0 : -100,
+                      rotate: active ? 0 : stackRotation,
+                      zIndex: active ? 999 : members.length + 2 - index,
+                      y: active ? [0, -30, 0] : 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: 100,
+                      rotate: stackRotation,
+                    }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute inset-0 origin-bottom rounded-3xl overflow-hidden shadow-2xl"
+                  >
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      width={500}
+                      height={700}
+                      draggable={false}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
           </div>
         </div>
 
         {/* ── Right: member info + bio + nav ── */}
-        <div className="flex flex-col justify-between py-2">
+        <div className="order-2 flex flex-col justify-between py-2 md:order-2">
           <motion.div
             key={active}
             initial={{ y: 20, opacity: 0 }}
@@ -201,7 +209,7 @@ export function AnimatedTeam({
               <button
                 onClick={handlePrev}
                 className={cn(
-                  "group flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all duration-200",
+                  "group flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 transition-all duration-200",
                   "border-[var(--color-accent)]/30 bg-white/80",
                   "hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] active:scale-95"
                 )}
@@ -221,7 +229,7 @@ export function AnimatedTeam({
               <button
                 onClick={handleNext}
                 className={cn(
-                  "group flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all duration-200",
+                  "group flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 transition-all duration-200",
                   "border-[var(--color-accent)]/30 bg-white/80",
                   "hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] active:scale-95"
                 )}

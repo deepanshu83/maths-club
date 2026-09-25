@@ -34,10 +34,10 @@ export default function Events() {
   return (
     <section
       id="events"
-      className="relative z-[2] pt-8 pb-16 lg:pt-10 lg:pb-16 bg-transparent"
+      className="relative z-[2] pt-10 pb-12 sm:pt-8 lg:pt-10 lg:pb-16 bg-transparent"
       aria-labelledby="events-heading"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div
           className={cn(
             "grid grid-cols-1 items-center gap-8 lg:gap-12",
@@ -103,7 +103,7 @@ export default function Events() {
 
                   <a
                     href={event.registerUrl}
-                    className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-black hover:bg-[var(--color-accent-hover)] transition-colors motion-reduce:transition-none focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
+                    className="shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg bg-[var(--color-accent)] text-black hover:bg-[var(--color-accent-hover)] transition-colors motion-reduce:transition-none focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
                     aria-label={`Register for ${eventDetails.name} — ${event.name}`}
                   >
                     Register Now
@@ -117,23 +117,77 @@ export default function Events() {
           {/* Art Column (Right) — mj.png at bottom of wrapper */}
           <div
             className={cn(
-              "hidden lg:flex relative",
-              SIDE === "left" ? "order-2 justify-end" : "order-2 lg:order-1 justify-start"
+              "relative mt-8 flex justify-center lg:mt-0 lg:justify-end",
+              SIDE === "left" ? "order-2 lg:order-2" : "order-2 lg:order-1"
             )}
           >
-            <div className="relative w-[260px] min-h-[560px] justify-self-end flex flex-col justify-end">
-              {/* MJ Image (z-5, above thread at z-0) */}
+            <div className="relative w-full max-w-[240px] lg:w-[260px] lg:min-h-[560px] lg:justify-self-end flex flex-col justify-end">
               <Image
                 src="/mj.png"
                 alt="MJ hanging from thread"
                 width={260}
                 height={553}
                 priority
-                className="pointer-events-none select-none relative z-[5]"
+                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none"
               />
 
-              {/* Physics Annotations */}
-              {/* 1. LEFT, top: 40px */}
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 lg:hidden"
+                style={{ right: "calc(100% - 20px)", top: "18px" }}
+                aria-hidden="true"
+              >
+                for MJ:<br />
+                T<sub>2</sub> = m′g
+              </div>
+
+              <div
+                className="absolute whitespace-nowrap text-right font-hand text-[11px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 lg:hidden"
+                style={{ right: "calc(100% - 18px)", top: "110px" }}
+                aria-hidden="true"
+              >
+                m′ = 50 kg
+              </div>
+
+              <div
+                className="absolute whitespace-nowrap text-left font-hand text-[11px] pointer-events-none z-10 select-none -rotate-1 lg:hidden"
+                style={{ left: "88px", top: "16px" }}
+                aria-hidden="true"
+              >
+                <div className="text-[#f5e9dc]/85 mb-1">T<sub>2</sub> = 50 × 10</div>
+                <div>
+                  <span
+                    className="inline-block text-[#ea580c] font-semibold"
+                    style={{
+                      border: "1.5px solid #ea580c",
+                      padding: "2px 8px",
+                      borderRadius: "6px 10px 8px 12px",
+                    }}
+                  >
+                    T<sub>2</sub> = 500 N
+                  </span>
+                </div>
+              </div>
+
+              <div
+                className="absolute whitespace-nowrap text-left font-hand text-[11px] pointer-events-none z-10 select-none rotate-1 lg:hidden"
+                style={{ left: "88px", top: "110px" }}
+                aria-hidden="true"
+              >
+                <div className="text-[#f5e9dc]/85 mb-1">T<sub>1</sub> = 70×10 + 500</div>
+                <div>
+                  <span
+                    className="inline-block text-[#ea580c] font-semibold"
+                    style={{
+                      border: "1.5px solid #ea580c",
+                      padding: "2px 8px",
+                      borderRadius: "6px 10px 8px 12px",
+                    }}
+                  >
+                    T<sub>1</sub> = 1200 N
+                  </span>
+                </div>
+              </div>
+
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 leading-tight pointer-events-none z-10 select-none rotate-1 hidden lg:block"
                 style={{ right: "calc(100% - 56px)", top: "40px" }}
@@ -143,7 +197,6 @@ export default function Events() {
                 T<sub>2</sub> = m′g ②
               </div>
 
-              {/* 2. LEFT, top: 210px */}
               <div
                 className="absolute whitespace-nowrap text-right font-hand text-[22px] text-[#f5e9dc]/85 pointer-events-none z-10 select-none -rotate-1 hidden lg:block"
                 style={{ right: "calc(100% - 56px)", top: "210px" }}
@@ -152,7 +205,6 @@ export default function Events() {
                 m′ = 50 kg
               </div>
 
-              {/* 3. RIGHT, top: 60px */}
               <div
                 className="absolute whitespace-nowrap text-left font-hand text-[22px] pointer-events-none z-10 select-none -rotate-1 hidden lg:block"
                 style={{ left: "140px", top: "60px" }}
@@ -173,7 +225,6 @@ export default function Events() {
                 </div>
               </div>
 
-              {/* 4. RIGHT, top: 220px */}
               <div
                 className="absolute whitespace-nowrap text-left font-hand text-[22px] pointer-events-none z-10 select-none rotate-1 hidden lg:block"
                 style={{ left: "140px", top: "220px" }}
