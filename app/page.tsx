@@ -16,10 +16,16 @@ export default function Home() {
         <About />
 
         {/* Shared wrapper around What We Do and Prove It with connecting thread */}
-        <div className="relative bg-[#D0CFC8] overflow-hidden border-b-4 border-[#1A1040]">
+        <div className="relative bg-[#BFBEB6] overflow-hidden border-b-4 border-[#1A1040]">
+          {/* Subtle radial dark tint across the art column for Spider-Man contrast */}
+          <div
+            className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_40%,_rgba(26,16,64,0.18),_transparent_70%)] pointer-events-none"
+            aria-hidden="true"
+          />
           <WhatWeDo />
           <Events />
         </div>
+
 
 
         <Team />

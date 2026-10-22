@@ -56,8 +56,9 @@ export default function Hero() {
             COLLECTOR&apos;S ISSUE #001
           </div>
           <div className="inline-block bg-[#F0EDE0] text-[#1A1040] px-3 py-1 text-xs font-stamp font-bold tracking-wider uppercase border-2 border-[#1A1040] shadow-[3px_3px_0px_#1A1040] rotate-1">
-            BKBIET PILANI &bull; 13–14 OCT
+            BKBIET PILANI &bull; 26–27 OCT &bull; 1:00 PM
           </div>
+
           <div className="hidden sm:inline-block bg-[#1A1040] text-[#F0EDE0] px-3 py-1 text-xs font-poster tracking-wider uppercase border border-[#1A1040] shadow-[2px_2px_0px_#C41E5A] -rotate-1">
             MATHEMATICS ED.
           </div>

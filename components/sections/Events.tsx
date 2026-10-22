@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CalendarDays, MapPin, ExternalLink } from "lucide-react";
+import { CalendarDays, MapPin, ExternalLink, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Flip to "right" to swap content and art column positions
@@ -7,28 +7,31 @@ const SIDE: "left" | "right" = "left";
 
 const eventDetails = {
   name: "PROVE IT",
-  dates: "13–14 October",
+  dates: "26–27 October",
+  time: "1:00 PM",
   venue: "BPTRC",
+  registerUrl: "#",
 };
 
 const schedule = [
   {
     id: 1,
     dayLabel: "Day 1",
-    tag: "Expert Talk",
-    name: "Expert Talk",
-    description: "How mathematical thinking shapes real-world problem-solving across research and industry.",
-    registerUrl: "#",
+    date: "26 October",
+    tag: "Hands-on Session",
+    name: "Workshop",
+    description: "An interactive, hands-on workshop designed to strengthen problem-solving, mathematical intuition, and practical applications.",
   },
   {
     id: 2,
     dayLabel: "Day 2",
-    tag: "Workshop",
-    name: "Workshop",
-    description: "A hands-on session to build, solve, and compete in practical mathematics.",
-    registerUrl: "#",
+    date: "27 October",
+    tag: "Quiz & Tambola",
+    name: "Mathambola",
+    description: "A thrilling mathematics-themed Tambola and high-stakes quiz game testing speed, accuracy, and tactical thinking.",
   },
 ];
+
 
 export default function Events() {
   return (
@@ -67,10 +70,15 @@ export default function Events() {
                   {eventDetails.name}
                 </h2>
 
-                <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-[#F0EDE0] border-2 border-[#1A1040] shadow-[3px_3px_0px_#1A1040] rotate-1 font-stamp text-xs sm:text-sm font-bold text-[#1A1040]">
+                <div className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-4 py-1.5 bg-[#F0EDE0] border-2 border-[#1A1040] shadow-[3px_3px_0px_#1A1040] rotate-1 font-stamp text-xs sm:text-sm font-bold text-[#1A1040]">
                   <span className="flex items-center gap-1.5 text-[#C41E5A]">
                     <CalendarDays className="w-4 h-4" aria-hidden="true" />
                     <time>{eventDetails.dates}</time>
+                  </span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1.5 text-[#1A1040]">
+                    <Clock className="w-4 h-4 text-[#C41E5A]" aria-hidden="true" />
+                    <span>{eventDetails.time}</span>
                   </span>
                   <span>•</span>
                   <span className="flex items-center gap-1.5 text-[#1A1040]">
@@ -82,12 +90,12 @@ export default function Events() {
             </div>
 
             {/* Event cards: Styled like Marvel Trading Card Panels */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               {schedule.map((event, idx) => (
                 <div
                   key={event.id}
                   className={cn(
-                    "trading-card relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 p-5 sm:p-6 bg-[#F0EDE0] border-3 border-[#1A1040] shadow-[6px_6px_0px_#1A1040]",
+                    "trading-card relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-5 sm:p-6 bg-[#F0EDE0] border-3 border-[#1A1040] shadow-[5px_5px_0px_#1A1040]",
                     idx === 0 ? "-rotate-0.5" : "rotate-0.5"
                   )}
                 >
@@ -95,10 +103,10 @@ export default function Events() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="px-2.5 py-0.5 text-[11px] font-stamp font-bold uppercase tracking-wider bg-[#1A1040] text-[#F0EDE0] shadow-[2px_2px_0px_#C41E5A]">
-                        {event.dayLabel} &bull; {event.tag}
+                        {event.dayLabel} &bull; {event.date}
                       </span>
-                      <span className="text-[10px] font-stamp font-bold text-[#C41E5A]">
-                        CHALLENGE PHASE 0{event.id}
+                      <span className="text-[10px] font-stamp font-bold text-[#C41E5A] uppercase">
+                        {event.tag}
                       </span>
                     </div>
 
@@ -106,23 +114,45 @@ export default function Events() {
                       {event.name}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-[#3E3854] font-medium leading-relaxed max-w-md">
+                    <p className="text-xs sm:text-sm text-[#3E3854] font-medium leading-relaxed max-w-lg">
                       {event.description}
                     </p>
                   </div>
 
-                  <a
-                    href={event.registerUrl}
-                    className="marvel-badge shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-2.5 text-base uppercase tracking-wider active:scale-95"
-                    aria-label={`Register for ${eventDetails.name} — ${event.name}`}
-                  >
-                    <span>Register Now</span>
-                    <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                  </a>
+                  <div className="shrink-0 flex sm:flex-col items-center sm:items-end justify-between sm:justify-center border-t sm:border-t-0 sm:border-l-2 border-dashed border-[#1A1040]/25 pt-2 sm:pt-0 sm:pl-4">
+                    <span className="font-stamp text-[10px] text-[#1A1040] font-bold uppercase">START TIME</span>
+                    <span className="font-poster text-lg text-[#C41E5A] tracking-wider">{eventDetails.time}</span>
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Single Unified Registration CTA Button for the entire event */}
+            <div className="mt-5 p-5 sm:p-6 bg-[#1A1040] border-3 border-[#1A1040] shadow-[6px_6px_0px_#C41E5A] flex flex-col sm:flex-row items-center justify-between gap-4 -rotate-0.5">
+              <div>
+                <div className="inline-block bg-[#C41E5A] text-white font-stamp text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider mb-1.5">
+                  SINGLE ACCESS PASS &bull; BOTH DAYS
+                </div>
+                <h4 className="font-poster text-2xl sm:text-3xl text-[#F0EDE0] tracking-wide uppercase">
+                  REGISTER FOR PROVE IT
+                </h4>
+                <p className="font-sans text-xs sm:text-sm text-[#D0CFC8] font-medium max-w-md">
+                  One simple registration gives you full entry to both Day 1 (Workshop) &amp; Day 2 (Mathambola Quiz).
+                </p>
+
+              </div>
+
+              <a
+                href={eventDetails.registerUrl}
+                className="marvel-badge shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3 text-lg sm:text-xl uppercase tracking-wider active:scale-95 shadow-[4px_4px_0px_#C41E5A]"
+                aria-label="Register for PROVE IT — Both Days Pass"
+              >
+                <span>REGISTER NOW</span>
+                <ExternalLink className="w-5 h-5" aria-hidden="true" />
+              </a>
+            </div>
           </div>
+
 
           {/* Art Column (Right) — mj.png at bottom of wrapper */}
           <div
@@ -132,14 +162,22 @@ export default function Events() {
             )}
           >
             <div className="relative mx-auto lg:mx-0 w-full max-w-[240px] lg:max-w-none lg:w-[260px] flex flex-col justify-start">
+              {/* Dynamic colored soft shadow aura so MJ pops cleanly without any box */}
+              <div
+                className="absolute inset-0 -m-8 sm:-m-12 rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(26,16,64,0.38)_0%,_rgba(196,30,90,0.22)_45%,_transparent_75%)] blur-2xl pointer-events-none z-0"
+                aria-hidden="true"
+              />
+
+
               <Image
                 src="/mj.png"
                 alt="MJ hanging from thread"
                 width={260}
                 height={553}
                 priority
-                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none drop-shadow-[8px_8px_0px_rgba(26,16,64,0.35)]"
+                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none drop-shadow-[0_12px_24px_rgba(26,16,64,0.65)] drop-shadow-[0_0_18px_rgba(196,30,90,0.45)] drop-shadow-[4px_4px_0px_#1A1040]"
               />
+
 
               {/* Mobile Physics Annotations */}
               <div

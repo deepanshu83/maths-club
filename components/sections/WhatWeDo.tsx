@@ -111,6 +111,13 @@ export default function WhatWeDo() {
             )}
           >
             <div className="relative mx-auto lg:mx-0 w-full max-w-[240px] lg:max-w-none lg:w-[260px] flex flex-col justify-start">
+              {/* Dynamic colored soft shadow aura so Spider-Man pops cleanly without any box */}
+              <div
+                className="absolute inset-0 -m-8 sm:-m-12 rounded-full bg-[radial-gradient(ellipse_at_center,_rgba(26,16,64,0.38)_0%,_rgba(196,30,90,0.22)_45%,_transparent_75%)] blur-2xl pointer-events-none z-0"
+                aria-hidden="true"
+              />
+
+
               {/* Thread from top edge down into Spider-Man's top web */}
               <div
                 className="hidden lg:block absolute bottom-full w-[3px] pointer-events-none z-0 -mb-[2px]"
@@ -130,8 +137,9 @@ export default function WhatWeDo() {
                 width={260}
                 height={428}
                 priority
-                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none drop-shadow-[8px_8px_0px_rgba(26,16,64,0.35)]"
+                className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none drop-shadow-[0_12px_24px_rgba(26,16,64,0.65)] drop-shadow-[0_0_18px_rgba(196,30,90,0.45)] drop-shadow-[4px_4px_0px_#1A1040]"
               />
+
 
               {/* Thread from Spider-Man's bottom hand down to MJ */}
               <div

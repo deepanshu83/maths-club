@@ -20,15 +20,7 @@ const teamMembersData: TeamMember[] = [
     name: "Arjun Mehta",
     role: "Vice President",
     bio: "Coordinates between sub-teams and oversees logistics for all club activities. Interested in combinatorics and graph theory. Arjun turns complex schedules into elegant solutions.",
-    photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&q=80",
-    linkedin: undefined,
-    instagram: undefined,
-  },
-  {
-    name: "Dr. Sunita Rao",
-    role: "Faculty Coordinator",
-    bio: "Faculty mentor guiding the club's academic direction. Specialises in abstract algebra and topology. Her office door is always open — especially if you bring an unsolved problem.",
-    photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&q=80",
+    photo: "/team/member4.jpeg",
     linkedin: undefined,
     instagram: undefined,
   },
@@ -41,14 +33,6 @@ const teamMembersData: TeamMember[] = [
     instagram: undefined,
   },
   {
-    name: "Rahul Gupta",
-    role: "Events Coordinator",
-    bio: "Handles outreach, participant registrations, and on-ground logistics for events. Keen interest in probability theory. Rahul keeps the chaos beautifully under control.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80",
-    linkedin: undefined,
-    instagram: undefined,
-  },
-  {
     name: "Kavya Nair",
     role: "Core Team — Design & Media",
     bio: "Manages all club branding, social media content, and event graphics. Loves the intersection of mathematics and visual art. Kavya proves that beauty and logic are the same thing.",
@@ -57,6 +41,7 @@ const teamMembersData: TeamMember[] = [
     instagram: undefined,
   },
 ];
+
 
 // ── Team Section ──────────────────────────────────────────────────────────────
 

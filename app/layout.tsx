@@ -10,10 +10,11 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "PROVE IT — Maths Club | 13–14 October",
+  title: "PROVE IT — Maths Club | 26–27 October",
   description:
-    "Official website of the college Mathematics Club. Join us for PROVE IT on 13–14 October at BPTRC — two days, two ways to grow.",
+    "Official website of the college Mathematics Club. Join us for PROVE IT on 26–27 October at 1:00 PM at BPTRC — two days, two ways to grow.",
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
