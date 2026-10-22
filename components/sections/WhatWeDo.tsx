@@ -9,12 +9,12 @@ const activities = [
   {
     icon: Trophy,
     title: "Challenges",
-    description: "Weekly problem sets that push your logical boundaries.",
+    description: "Curated problem sets and challenges organized 2–3 times a year to push logical boundaries.",
   },
   {
     icon: FlaskConical,
     title: "Competitions",
-    description: "Inter-college contests to test and showcase your skills.",
+    description: "High-stakes inter-college and campus contests held 2–3 times a year to test and showcase your skills.",
   },
   {
     icon: BookOpen,

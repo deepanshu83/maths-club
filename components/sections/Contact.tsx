@@ -1,10 +1,11 @@
 "use client";
 
-import { Mail, Globe, Share2, ExternalLink } from "lucide-react";
+import { Mail, Globe, Share2, ExternalLink, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 
 const socialLinks = [
+  { label: "WhatsApp", href: "https://wa.me/918302909191?text=Hi%2C%20I%20want%20to%20join%20the%20Maths%20Club!", icon: MessageCircle },
   { label: "Instagram", href: "#", icon: Globe },
   { label: "Twitter / X", href: "#", icon: Share2 },
   { label: "Email", href: "mailto:mathsclub.bkbiet@gmail.com", icon: Mail },
@@ -50,9 +51,19 @@ export default function Contact() {
               Membership is open to all students.
             </p>
 
-            {/* College & email info */}
+            {/* College, WhatsApp & email info */}
             <div className="inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mb-8 px-4 py-2 bg-[#D0CFC8]/60 border-2 border-[#1A1040] font-stamp text-xs sm:text-sm text-[#1A1040] font-bold">
-              <span>BK Birla Institute of Engineering &amp; Technology, Pilani</span>
+              <span>BKBIET Pilani</span>
+              <span className="hidden sm:block text-[#C41E5A]">•</span>
+              <a
+                href="https://wa.me/918302909191?text=Hi%2C%20I%20want%20to%20join%20the%20Maths%20Club!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#C41E5A] underline transition-colors flex items-center gap-1.5"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>WhatsApp: +91 8302909191</span>
+              </a>
               <span className="hidden sm:block text-[#C41E5A]">•</span>
               <a
                 href="mailto:mathsclub.bkbiet@gmail.com"
@@ -62,19 +73,22 @@ export default function Contact() {
               </a>
             </div>
 
-            {/* CTA button: Marvel Badge Style */}
+            {/* CTA button: Marvel Badge Style linking to WhatsApp */}
             <div className="mb-8">
               <motion.a
-                href="#"
+                href="https://wa.me/918302909191?text=Hi%2C%20I%20want%20to%20join%20the%20Maths%20Club!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="marvel-badge inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xl sm:text-2xl uppercase tracking-wider active:scale-95"
+                className="marvel-badge inline-flex items-center justify-center gap-2 px-8 py-3.5 text-xl sm:text-2xl uppercase tracking-wider active:scale-95 shadow-[4px_4px_0px_#1A1040]"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
                 <span>JOIN THE CLUB NOW</span>
-                <ExternalLink className="w-5 h-5" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5 text-white" aria-hidden="true" />
               </motion.a>
+              <p className="mt-2 text-xs font-stamp font-bold text-[#1A1040] uppercase tracking-wider">
+                Direct WhatsApp Contact: +91 8302909191
+              </p>
             </div>
 
             {/* Social links */}
