@@ -41,15 +41,16 @@ export default function Navbar() {
         <Link
           href="#home"
           className="flex min-w-0 shrink-0 items-center gap-2 group transition-transform active:scale-95"
-          aria-label="Maths Club Antigravity Home"
+          aria-label="Maths Club Home"
         >
           <div className="bg-[#C41E5A] px-2.5 py-0.5 border border-[#1A1040] shadow-[2px_2px_0px_#1A1040] text-white font-poster text-xl tracking-wider uppercase">
-            ANTIGRAVITY
+            MATHS CLUB
           </div>
           <span className="hidden sm:inline-block font-stamp text-xs text-[#1A1040] font-bold tracking-tight uppercase border-b-2 border-[#C41E5A]">
-            MATHS CLUB
+            BKBIET PILANI
           </span>
         </Link>
+
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex items-center gap-1 sm:gap-2" role="list">

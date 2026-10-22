@@ -59,19 +59,20 @@ export default function Hero() {
             BKBIET PILANI &bull; 13–14 OCT
           </div>
           <div className="hidden sm:inline-block bg-[#1A1040] text-[#F0EDE0] px-3 py-1 text-xs font-poster tracking-wider uppercase border border-[#1A1040] shadow-[2px_2px_0px_#C41E5A] -rotate-1">
-            ANTIGRAVITY ED.
+            MATHEMATICS ED.
           </div>
         </div>
 
         {/* Main Collage Cutout Headline */}
         <div className="max-w-4xl relative">
           <h1 id="hero-heading" className="flex flex-col gap-2 select-none">
-            {/* Cutout 1: WITH ANTIGRAVITY */}
+            {/* Cutout 1: WITH GREAT LOGIC */}
             <div className="inline-block self-start">
               <span className="inline-block bg-[#1A1040] text-[#F0EDE0] px-4 sm:px-6 py-1 sm:py-2.5 font-poster text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase border-3 border-[#1A1040] shadow-[6px_6px_0px_#C41E5A] -rotate-1 transition-transform hover:-rotate-2">
-                WITH ANTIGRAVITY
+                WITH GREAT LOGIC
               </span>
             </div>
+
 
             {/* Cutout 2: COMES */}
             <div className="inline-block self-start -mt-2 sm:-mt-3 ml-4 sm:ml-10">

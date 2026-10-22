@@ -23,11 +23,11 @@ export default function Footer() {
           {/* Brand column */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="bg-[#C41E5A] px-2 py-0.5 text-white font-poster text-xl tracking-wider uppercase border border-[#1A1040] shadow-[2px_2px_0px_#1A1040]">
-                ANTIGRAVITY
+              <div className="bg-[#C41E5A] px-2.5 py-0.5 text-white font-poster text-xl tracking-wider uppercase border border-[#1A1040] shadow-[2px_2px_0px_#1A1040]">
+                MATHS CLUB
               </div>
               <span className="font-stamp text-xs text-[#1A1040] font-bold tracking-tight uppercase">
-                MATHS CLUB
+                BKBIET PILANI
               </span>
             </div>
             <p className="text-sm text-[#3E3854] font-medium leading-relaxed max-w-xs">
@@ -92,10 +92,11 @@ export default function Footer() {
 
             {/* MARVEL-style brand logo badge in bottom right corner */}
             <div className="bg-[#C41E5A] px-3 py-1 border-2 border-[#1A1040] shadow-[3px_3px_0px_#1A1040] text-white font-poster text-lg tracking-wider uppercase inline-block -rotate-2 select-none hover:rotate-0 transition-transform">
-              ANTIGRAVITY
+              MATHS CLUB
             </div>
           </div>
         </div>
+
       </div>
     </footer>
   );
