@@ -13,6 +13,7 @@ const teamMembersData: TeamMember[] = [
     role: "President",
     bio: "Leads the club's overall vision, strategy, and mathematical initiatives. Passionate about problem-solving, algorithms, and fostering an active culture of curious thinkers.",
     photo: "/team/deepanshu.jpeg",
+    photoClassName: "scale-[0.82] origin-bottom",
     linkedin: undefined,
     instagram: undefined,
   },

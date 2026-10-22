@@ -12,8 +12,9 @@ export interface TeamMember {
   name: string;
   role: string;
   bio: string;
-  /** URL to portrait photo — TODO: replace placeholder Unsplash URLs with real team photos */
+  /** URL to portrait photo */
   photo: string;
+  photoClassName?: string;
   linkedin?: string;
   instagram?: string;
 }
@@ -101,18 +102,30 @@ export function AnimatedTeam({
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="absolute inset-0 origin-bottom border-4 border-[#1A1040] bg-[#F0EDE0] shadow-[8px_8px_0px_#1A1040] overflow-hidden"
                   >
+                    {/* Ambient backdrop to seamlessly fill edges for scaled/zoomed-out portraits */}
+                    <div
+                      className="absolute inset-0 scale-125 blur-md opacity-35 bg-cover bg-center pointer-events-none"
+                      style={{ backgroundImage: `url(${member.photo})` }}
+                      aria-hidden="true"
+                    />
+
                     <div className="absolute top-2 left-2 z-20 bg-[#C41E5A] text-white px-2 py-0.5 font-stamp text-[9px] font-bold uppercase tracking-widest border border-[#1A1040] shadow-[2px_2px_0px_#1A1040]">
                       CARD 0{index + 1}
                     </div>
+
                     <Image
                       src={member.photo}
                       alt={member.name}
                       width={500}
                       height={700}
                       draggable={false}
-                      className="h-full w-full object-cover object-top"
+                      className={cn(
+                        "relative z-10 h-full w-full object-cover object-top transition-transform duration-300",
+                        member.photoClassName
+                      )}
                     />
-                    <div className="absolute bottom-0 inset-x-0 bg-[#1A1040]/90 px-3 py-1.5 flex justify-between items-center text-white font-stamp text-[10px] tracking-wider uppercase">
+
+                    <div className="absolute bottom-0 inset-x-0 z-20 bg-[#1A1040]/90 px-3 py-1.5 flex justify-between items-center text-white font-stamp text-[10px] tracking-wider uppercase">
                       <span>STATUS: ACTIVE</span>
                       <span className="text-[#C41E5A] font-bold">BKBIET</span>
                     </div>
