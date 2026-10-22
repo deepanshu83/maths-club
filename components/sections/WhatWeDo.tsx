@@ -9,12 +9,14 @@ const activities = [
   {
     icon: Trophy,
     title: "Challenges",
-    description: "Curated problem sets and challenges organized 2–3 times a year to push logical boundaries.",
+    description:
+      "Thought-provoking problem sets designed to build deep intuition, sharpen analytical reasoning, and train you to crack unconventional puzzles with precision.",
   },
   {
     icon: FlaskConical,
     title: "Competitions",
-    description: "High-stakes inter-college and campus contests held 2–3 times a year to test and showcase your skills.",
+    description:
+      "High-stakes inter-college and campus contests designed to test your mathematical speed, tactical acumen, and competitive edge.",
   },
   {
     icon: BookOpen,

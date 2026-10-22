@@ -66,16 +66,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/918302909191?text=Hi%2C%20I%20want%20to%20join%20the%20Maths%20Club!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-bold text-[#1A1040] hover:text-[#C41E5A] transition-colors underline"
-                >
-                  WhatsApp: +91 8302909191
-                </a>
-              </li>
-              <li>
-                <a
                   href="mailto:mathsclub.bkbiet@gmail.com"
                   className="text-sm font-bold text-[#1A1040] hover:text-[#C41E5A] transition-colors underline"
                 >
