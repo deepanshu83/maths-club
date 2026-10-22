@@ -65,12 +65,11 @@ export function AnimatedTeam({
 
   return (
     <div className="w-full mx-auto px-2 py-4 font-[var(--font-body)] antialiased">
-      <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
+      <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 items-center">
 
         {/* ── Left: stacked rotating photo stack ── */}
         <div className="order-1 md:order-1">
-          {/* h-[42vh] scales with viewport so it always fits on screen */}
-          <div className="relative h-[30vh] sm:h-[36vh] md:h-[42vh] w-full max-w-[240px] sm:max-w-[280px] mx-auto">
+          <div className="relative h-[32vh] sm:h-[38vh] md:h-[44vh] w-full max-w-[260px] sm:max-w-[300px] mx-auto">
             <AnimatePresence>
               {members.map((member, index) => {
                 const stackRotation = getStackRotation(index);
@@ -91,7 +90,7 @@ export function AnimatedTeam({
                       z: active ? 0 : -100,
                       rotate: active ? 0 : stackRotation,
                       zIndex: active ? 999 : members.length + 2 - index,
-                      y: active ? [0, -30, 0] : 0,
+                      y: active ? [0, -20, 0] : 0,
                     }}
                     exit={{
                       opacity: 0,
@@ -100,8 +99,11 @@ export function AnimatedTeam({
                       rotate: stackRotation,
                     }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute inset-0 origin-bottom rounded-3xl overflow-hidden shadow-2xl"
+                    className="absolute inset-0 origin-bottom border-4 border-[#1A1040] bg-[#F0EDE0] shadow-[8px_8px_0px_#1A1040] overflow-hidden"
                   >
+                    <div className="absolute top-2 left-2 z-20 bg-[#C41E5A] text-white px-2 py-0.5 font-stamp text-[9px] font-bold uppercase tracking-widest border border-[#1A1040] shadow-[2px_2px_0px_#1A1040]">
+                      CARD 0{index + 1}
+                    </div>
                     <Image
                       src={member.photo}
                       alt={member.name}
@@ -110,6 +112,10 @@ export function AnimatedTeam({
                       draggable={false}
                       className="h-full w-full object-cover object-top"
                     />
+                    <div className="absolute bottom-0 inset-x-0 bg-[#1A1040]/90 px-3 py-1.5 flex justify-between items-center text-white font-stamp text-[10px] tracking-wider uppercase">
+                      <span>STATUS: ACTIVE</span>
+                      <span className="text-[#C41E5A] font-bold">BKBIET</span>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -118,33 +124,38 @@ export function AnimatedTeam({
         </div>
 
         {/* ── Right: member info + bio + nav ── */}
-        <div className="order-2 flex flex-col justify-between py-2 md:order-2">
+        <div className="order-2 flex flex-col justify-between p-6 sm:p-7 bg-[#F0EDE0] border-3 border-[#1A1040] shadow-[7px_7px_0px_#1A1040] rotate-0.5 md:order-2">
           <motion.div
             key={active}
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
+            exit={{ y: -15, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
+            {/* Stamp label */}
+            <div className="inline-block bg-[#1A1040] text-[#F0EDE0] font-stamp text-[10px] font-bold px-2.5 py-0.5 uppercase tracking-widest border border-[#1A1040] -rotate-1 mb-2">
+              AGENT PROFILE &bull; FILE #{active + 1}
+            </div>
+
             {/* Name & role */}
-            <h3 className="text-2xl font-bold text-[var(--color-foreground)]">
+            <h3 className="font-poster text-3xl sm:text-4xl text-[#1A1040] tracking-wide uppercase">
               {members[active].name}
             </h3>
-            <p className="text-sm font-semibold mt-1" style={{ color: "var(--color-accent)" }}>
+            <p className="inline-block mt-1 px-2.5 py-0.5 bg-[#C41E5A] text-white font-stamp text-xs font-bold tracking-wider uppercase border border-[#1A1040] shadow-[2px_2px_0px_#1A1040]">
               {members[active].role}
             </p>
 
             {/* Word-by-word blur-fade bio */}
-            <motion.p className="mt-6 text-sm leading-relaxed text-[var(--color-muted)]">
+            <motion.p className="mt-5 text-sm sm:text-base leading-relaxed text-[#2A2346] font-medium">
               {members[active].bio.split(" ").map((word, index) => (
                 <motion.span
                   key={`${members[active].name}-${active}-${index}`}
-                  initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                  initial={{ filter: "blur(6px)", opacity: 0, y: 4 }}
                   animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.2,
+                    duration: 0.15,
                     ease: "easeInOut",
-                    delay: 0.02 * index,
+                    delay: 0.015 * index,
                   }}
                   className="inline-block"
                 >
@@ -154,16 +165,16 @@ export function AnimatedTeam({
             </motion.p>
 
             {/* Social links */}
-            <div className="mt-5 flex gap-4">
+            <div className="mt-5 flex gap-3">
               {members[active].linkedin && (
                 <a
                   href={members[active].linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--color-muted)] transition-colors hover:text-[var(--color-accent)]"
+                  className="p-1.5 border-2 border-[#1A1040] bg-[#D0CFC8] text-[#1A1040] hover:bg-[#C41E5A] hover:text-white transition-colors shadow-[2px_2px_0px_#1A1040]"
                   aria-label={`${members[active].name} on LinkedIn`}
                 >
-                  <Link2 className="w-5 h-5" />
+                  <Link2 className="w-4 h-4" />
                 </a>
               )}
               {members[active].instagram && (
@@ -171,19 +182,19 @@ export function AnimatedTeam({
                   href={members[active].instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--color-muted)] transition-colors hover:text-[var(--color-accent)]"
+                  className="p-1.5 border-2 border-[#1A1040] bg-[#D0CFC8] text-[#1A1040] hover:bg-[#C41E5A] hover:text-white transition-colors shadow-[2px_2px_0px_#1A1040]"
                   aria-label={`${members[active].name} on Instagram`}
                 >
-                  <AtSign className="w-5 h-5" />
+                  <AtSign className="w-4 h-4" />
                 </a>
               )}
             </div>
           </motion.div>
 
           {/* Navigation arrows + dot indicators */}
-          <div className="mt-8 flex flex-col gap-4">
+          <div className="mt-7 pt-4 border-t-2 border-dashed border-[#1A1040]/30 flex items-center justify-between gap-4">
             {/* Dot indicators */}
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-1.5 items-center">
               {members.map((_, index) => (
                 <button
                   key={index}
@@ -194,25 +205,21 @@ export function AnimatedTeam({
                     setActive(index);
                   }}
                   aria-label={`Go to member ${index + 1}`}
-                  className="h-1.5 rounded-full transition-all duration-300"
+                  className="h-2 border border-[#1A1040] transition-all duration-300"
                   style={
                     isActive(index)
-                      ? { backgroundColor: "var(--color-accent)", width: "2rem" }
-                      : { backgroundColor: "rgba(234,88,12,0.25)", width: "1rem" }
+                      ? { backgroundColor: "#C41E5A", width: "1.75rem" }
+                      : { backgroundColor: "#D0CFC8", width: "0.75rem" }
                   }
                 />
               ))}
             </div>
 
             {/* Arrow buttons */}
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
                 onClick={handlePrev}
-                className={cn(
-                  "group flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 transition-all duration-200",
-                  "border-[var(--color-accent)]/30 bg-white/80",
-                  "hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] active:scale-95"
-                )}
+                className="flex h-9 w-9 items-center justify-center border-2 border-[#1A1040] bg-[#F0EDE0] shadow-[2px_2px_0px_#1A1040] hover:bg-[#C41E5A] hover:text-white transition-colors active:scale-95"
                 aria-label="Previous member"
               >
                 <svg
@@ -221,18 +228,14 @@ export function AnimatedTeam({
                   viewBox="0 0 24 24"
                   strokeWidth={2.5}
                   stroke="currentColor"
-                  className="h-5 w-5 text-[var(--color-accent)] group-hover:text-white transition-colors"
+                  className="h-4 w-4"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
               </button>
               <button
                 onClick={handleNext}
-                className={cn(
-                  "group flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 transition-all duration-200",
-                  "border-[var(--color-accent)]/30 bg-white/80",
-                  "hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] active:scale-95"
-                )}
+                className="flex h-9 w-9 items-center justify-center border-2 border-[#1A1040] bg-[#C41E5A] text-white shadow-[2px_2px_0px_#1A1040] hover:bg-[#1A1040] transition-colors active:scale-95"
                 aria-label="Next member"
               >
                 <svg
@@ -241,7 +244,7 @@ export function AnimatedTeam({
                   viewBox="0 0 24 24"
                   strokeWidth={2.5}
                   stroke="currentColor"
-                  className="h-5 w-5 text-[var(--color-accent)] group-hover:text-white transition-colors"
+                  className="h-4 w-4"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
@@ -253,3 +256,4 @@ export function AnimatedTeam({
     </div>
   );
 }
+

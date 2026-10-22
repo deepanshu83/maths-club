@@ -30,24 +30,24 @@ export default function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 pointer-events-none pt-3 sm:pt-4 px-2.5 sm:px-6">
       <nav
         className={cn(
-          "pointer-events-auto max-w-5xl mx-auto flex items-center justify-between gap-2 px-3 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300",
+          "pointer-events-auto max-w-5xl mx-auto flex items-center justify-between gap-2 px-4 sm:px-6 py-2.5 rounded-md border-2 border-[#1A1040] transition-all duration-300",
           scrolled
-            ? "bg-[#0a0604]/90 border border-[var(--color-accent)]/30 shadow-[0_8px_32px_rgba(0,0,0,0.6)] backdrop-blur-xl"
-            : "bg-[#0a0604]/75 border border-[var(--color-border)] shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-lg"
+            ? "bg-[#F0EDE0] shadow-[5px_5px_0px_#1A1040]"
+            : "bg-[#F0EDE0]/95 shadow-[4px_4px_0px_#1A1040] backdrop-blur-sm"
         )}
         aria-label="Main navigation"
       >
-        {/* Logo */}
+        {/* Logo: Marvel-style badge */}
         <Link
           href="#home"
-          className="flex min-w-0 shrink-0 items-center gap-2 text-white group transition-transform active:scale-95"
-          aria-label="Maths Club Home"
+          className="flex min-w-0 shrink-0 items-center gap-2 group transition-transform active:scale-95"
+          aria-label="Maths Club Antigravity Home"
         >
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-accent-light)] border border-[var(--color-accent)]/30 text-[var(--color-accent)] group-hover:bg-[var(--color-accent)] group-hover:text-black transition-colors duration-200">
-            <Sigma className="w-4 h-4" aria-hidden="true" />
+          <div className="bg-[#C41E5A] px-2.5 py-0.5 border border-[#1A1040] shadow-[2px_2px_0px_#1A1040] text-white font-poster text-xl tracking-wider uppercase">
+            ANTIGRAVITY
           </div>
-          <span className="whitespace-nowrap text-base sm:text-lg font-bold tracking-tight">
-            Maths<span className="text-[var(--color-accent)]">Club</span>
+          <span className="hidden sm:inline-block font-stamp text-xs text-[#1A1040] font-bold tracking-tight uppercase border-b-2 border-[#C41E5A]">
+            MATHS CLUB
           </span>
         </Link>
 
@@ -58,10 +58,10 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200",
+                  "px-3 py-1 text-xs sm:text-sm font-bold tracking-wide uppercase transition-all duration-200",
                   link.href === "#events"
-                    ? "text-[var(--color-accent)] hover:bg-[var(--color-accent-light)]"
-                    : "text-[var(--color-muted)] hover:text-white hover:bg-white/[0.06]"
+                    ? "bg-[#1A1040] text-[#F0EDE0] shadow-[2px_2px_0px_#C41E5A] -rotate-1 hover:rotate-0"
+                    : "text-[#1A1040] hover:text-[#C41E5A] hover:bg-[#D0CFC8]/50 rounded"
                 )}
               >
                 {link.label}
@@ -74,15 +74,15 @@ export default function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
             href="#events"
-            className="inline-flex items-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-sm font-semibold rounded-full bg-[var(--color-accent)] text-black hover:bg-[var(--color-accent-hover)] transition-all duration-200 shadow-[0_2px_12px_rgba(234,88,12,0.35)] active:scale-95 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-black"
+            className="marvel-badge px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center gap-1.5"
           >
-            <span>Register</span>
-            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" aria-hidden="true" />
+            <span>PROVE IT</span>
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
           </Link>
 
           <button
             type="button"
-            className="md:hidden min-w-[44px] min-h-[44px] p-2 rounded-full text-[var(--color-muted)] hover:text-white hover:bg-white/10 transition-colors"
+            className="md:hidden min-w-[36px] min-h-[36px] p-1.5 rounded border-2 border-[#1A1040] bg-[#D0CFC8] text-[#1A1040] hover:bg-[#C41E5A] hover:text-white transition-colors"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -97,18 +97,18 @@ export default function Navbar() {
       {menuOpen && (
         <div
           id="mobile-menu"
-          className="pointer-events-auto md:hidden max-w-sm mx-auto mt-2 p-3 rounded-2xl bg-[#0a0604]/95 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
+          className="pointer-events-auto md:hidden max-w-sm mx-auto mt-2 p-3 rounded-md bg-[#F0EDE0] border-2 border-[#1A1040] shadow-[6px_6px_0px_#1A1040] animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <ul className="flex flex-col gap-1" role="list">
+          <ul className="flex flex-col gap-1.5" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   className={cn(
-                    "block px-3 py-2 text-sm font-medium rounded-xl transition-colors",
+                    "block px-3 py-2 text-sm font-bold uppercase tracking-wider rounded transition-colors",
                     link.href === "#events"
-                      ? "text-[var(--color-accent)] bg-[var(--color-accent-light)]/40"
-                      : "text-[var(--color-muted)] hover:text-white hover:bg-white/10"
+                      ? "bg-[#C41E5A] text-white shadow-[2px_2px_0px_#1A1040]"
+                      : "text-[#1A1040] hover:bg-[#D0CFC8]"
                   )}
                   onClick={() => setMenuOpen(false)}
                 >
@@ -122,3 +122,4 @@ export default function Navbar() {
     </header>
   );
 }
+

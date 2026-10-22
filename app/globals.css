@@ -1,44 +1,148 @@
-/* Google Fonts — loaded at browser runtime, not build time */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Google Fonts for Spider-Man Poster / Collage aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Permanent+Marker&family=Special+Elite&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 
 @theme {
   /* Fonts */
+  --font-poster: 'Bebas Neue', system-ui, sans-serif;
+  --font-stamp: 'Special Elite', monospace;
+  --font-marker: 'Permanent Marker', cursive;
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-hand: var(--font-hand), cursive;
 
-  /* Color palette — warm ember-dark palette tilted towards orange */
-  --color-background: #0a0604;
-  --color-foreground: #faf5f0;
-  --color-muted: #b8a69a;
-  --color-border: rgba(234, 88, 12, 0.16);
-  --color-card: #140d08;
-  --color-accent: #ea580c;
-  --color-accent-hover: #f97316;
-  --color-accent-light: rgba(234, 88, 12, 0.18);
+  /* Poster Color Palette */
+  --color-background: #D0CFC8;
+  --color-foreground: #1A1040;
+  --color-muted: #534D6B;
+  --color-border: #1A1040;
+  --color-card: #F0EDE0;
+  --color-accent: #C41E5A;
+  --color-accent-hover: #9E1243;
+  --color-accent-light: rgba(196, 30, 90, 0.12);
+  
+  --color-poster-bg: #D0CFC8;
+  --color-poster-paper: #F0EDE0;
+  --color-poster-crimson: #C41E5A;
+  --color-poster-crimson-dark: #9E1243;
+  --color-poster-navy: #1A1040;
+  --color-poster-navy-light: #281B5E;
+  --color-poster-cream: #F0EDE0;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
   overflow-x: hidden;
+  background-color: #D0CFC8;
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: #D0CFC8;
+  color: #1A1040;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   overscroll-behavior-x: none;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+/* Subtle paper texture noise across the entire body */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+}
+
+.font-poster {
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+}
+
+.font-stamp {
+  font-family: 'Special Elite', monospace;
+}
+
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Halftone comic dot overlay */
+.comic-halftone {
+  background-image: radial-gradient(#1A1040 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+.comic-halftone-crimson {
+  background-image: radial-gradient(#C41E5A 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+
+/* Cutout Paper Shadows */
+.cutout-shadow {
+  box-shadow: 4px 4px 0px #1A1040;
+}
+
+.cutout-shadow-lg {
+  box-shadow: 7px 7px 0px #1A1040;
+}
+
+.cutout-shadow-crimson {
+  box-shadow: 5px 5px 0px #C41E5A;
+}
+
+.cutout-shadow-cream {
+  box-shadow: 4px 4px 0px #F0EDE0;
+}
+
+/* Marvel-style Badge */
+.marvel-badge {
+  background-color: #C41E5A;
+  color: #F0EDE0;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.08em;
+  border: 2px solid #1A1040;
+  box-shadow: 4px 4px 0px #1A1040;
+  transition: all 0.15s ease-in-out;
+}
+
+.marvel-badge:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #1A1040;
+}
+
+/* Stamp Border */
+.stamp-border {
+  border: 2px dashed #1A1040;
+}
+
+.stamp-border-crimson {
+  border: 2px dashed #C41E5A;
+}
+
+/* Trading Card 3D tilt */
+.trading-card {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.trading-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 9px 9px 0px #1A1040;
 }
 
 @media (max-width: 767px) {
@@ -51,6 +155,3 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.font-hand {
-  font-family: var(--font-hand);
-}

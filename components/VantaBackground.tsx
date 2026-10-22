@@ -42,11 +42,11 @@ export default function VantaBackground() {
           minWidth: 200.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          color: 0xf97316,
-          backgroundColor: 0x0a0604,
-          points: 10.0,
-          maxDistance: 22.0,
-          spacing: 16.0,
+          color: 0x1A1040,
+          backgroundColor: 0xD0CFC8,
+          points: 8.0,
+          maxDistance: 20.0,
+          spacing: 18.0,
           showDots: true,
         })
       );
@@ -57,5 +57,6 @@ export default function VantaBackground() {
     };
   }, [isMobile, vantaEffect]);
 
-  return <div ref={vantaRef} className="absolute inset-0 w-full h-full" />;
+  return <div ref={vantaRef} className="absolute inset-0 w-full h-full opacity-40 mix-blend-multiply pointer-events-none" />;
+
 }
