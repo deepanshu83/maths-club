@@ -32,7 +32,7 @@ export default function WhatWeDo() {
   return (
     <section
       id="what-we-do"
-      className="relative z-[2] pt-16 pb-12 sm:pt-20 lg:pt-24 lg:pb-16 bg-transparent"
+      className="relative z-[3] pt-16 pb-12 sm:pt-20 lg:pt-24 lg:pb-16 bg-transparent"
       aria-labelledby="what-we-do-heading"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -138,19 +138,6 @@ export default function WhatWeDo() {
                 height={428}
                 priority
                 className="pointer-events-none select-none relative z-[5] mx-auto w-full max-w-[220px] h-auto sm:max-w-[240px] lg:max-w-none drop-shadow-[0_12px_24px_rgba(26,16,64,0.65)] drop-shadow-[0_0_18px_rgba(196,30,90,0.45)] drop-shadow-[4px_4px_0px_#1A1040]"
-              />
-
-
-              {/* Thread from Spider-Man's bottom hand down to MJ */}
-              <div
-                className="hidden lg:block absolute top-full w-[3px] pointer-events-none z-0 -mt-[2px]"
-                style={{
-                  left: "113px",
-                  height: "220px",
-                  background:
-                    "linear-gradient(to bottom, rgba(26,16,64,0.9), rgba(196,30,90,0.8))",
-                }}
-                aria-hidden="true"
               />
 
               {/* Physics Annotations */}

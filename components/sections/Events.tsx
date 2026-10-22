@@ -168,8 +168,21 @@ export default function Events() {
                 aria-hidden="true"
               />
 
+              {/* Thread going upwards into WhatWeDo to seamlessly connect with Spider-Man */}
+              <div
+
+                className="hidden lg:block absolute bottom-full w-[3px] pointer-events-none z-0 -mb-[2px]"
+                style={{
+                  left: "113px",
+                  height: "500px",
+                  background:
+                    "linear-gradient(to top, #C41E5A, #1A1040)",
+                }}
+                aria-hidden="true"
+              />
 
               <Image
+
                 src="/mj.png"
                 alt="MJ hanging from thread"
                 width={260}
