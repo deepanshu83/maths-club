@@ -10,7 +10,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 const teamMembersData: TeamMember[] = [
   {
     name: "Deepanshu",
-    role: "President",
+    role: "Club Lead",
     bio: "Leads the club's overall vision, strategy, and mathematical initiatives. Passionate about problem-solving, algorithms, and fostering an active culture of curious thinkers.",
     photo: "/team/deepanshu.jpeg",
     photoClassName: "scale-[0.82] origin-bottom",
@@ -18,9 +18,17 @@ const teamMembersData: TeamMember[] = [
     instagram: undefined,
   },
   {
-    name: "Bhagyashree",
+    name: "Priya",
     role: "Vice President",
-    bio: "Coordinates between sub-teams and oversees logistics for all club activities. Interested in combinatorics, analytical thinking, and turning complex ideas into elegant solutions.",
+    bio: "Coordinates between sub-teams, oversees club initiatives, and manages flagship event operations. Passionate about number theory, competitive mathematics, and collaborative learning.",
+    photo: "/team/priya.jpeg",
+    linkedin: undefined,
+    instagram: undefined,
+  },
+  {
+    name: "Bhagyashree",
+    role: "Operations Lead",
+    bio: "Oversees club operations, logistics, and academic collaborations. Passionate about combinatorics, analytical thinking, and turning complex ideas into elegant solutions.",
     photo: "/team/bhagyashree.jpeg",
     linkedin: undefined,
     instagram: undefined,
@@ -34,16 +42,8 @@ const teamMembersData: TeamMember[] = [
     instagram: undefined,
   },
   {
-    name: "Priya",
-    role: "Core Team — Operations",
-    bio: "Manages event operations, participant registrations, and community outreach. Passionate about number theory, competitive mathematics, and collaborative learning.",
-    photo: "/team/priya.jpeg",
-    linkedin: undefined,
-    instagram: undefined,
-  },
-  {
     name: "Shivam",
-    role: "Core Team — Design & Media",
+    role: "Design & Media Lead",
     bio: "Drives club branding, social media content, and visual design. Loves exploring the convergence of mathematics, logic, and aesthetic digital art.",
     photo: "/team/shivam.jpeg",
     linkedin: undefined,

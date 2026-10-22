@@ -10,7 +10,8 @@ const eventDetails = {
   dates: "26–27 October",
   time: "1:00 PM",
   venue: "BPTRC",
-  registerUrl: "#",
+  registerUrl:
+    "https://docs.google.com/forms/d/e/1FAIpQLSdujR2OZdFHmDrgLAUxD4v6_582KtESfNn6Aw7LlhWWUa6Vxg/viewform",
 };
 
 const schedule = [
@@ -144,6 +145,8 @@ export default function Events() {
 
               <a
                 href={eventDetails.registerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="marvel-badge shrink-0 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-7 py-3 text-lg sm:text-xl uppercase tracking-wider active:scale-95 shadow-[4px_4px_0px_#C41E5A]"
                 aria-label="Register for PROVE IT — Both Days Pass"
               >
