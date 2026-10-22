@@ -102,9 +102,9 @@ export function AnimatedTeam({
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="absolute inset-0 origin-bottom border-4 border-[#1A1040] bg-[#F0EDE0] shadow-[8px_8px_0px_#1A1040] overflow-hidden"
                   >
-                    {/* Ambient backdrop to seamlessly fill edges for scaled/zoomed-out portraits */}
+                    {/* Ambient backdrop to seamlessly fill edges for fitted portraits */}
                     <div
-                      className="absolute inset-0 scale-125 blur-md opacity-35 bg-cover bg-center pointer-events-none"
+                      className="absolute inset-0 scale-125 blur-lg opacity-40 bg-cover bg-center pointer-events-none"
                       style={{ backgroundImage: `url(${member.photo})` }}
                       aria-hidden="true"
                     />
@@ -113,17 +113,19 @@ export function AnimatedTeam({
                       CARD 0{index + 1}
                     </div>
 
-                    <Image
-                      src={member.photo}
-                      alt={member.name}
-                      width={500}
-                      height={700}
-                      draggable={false}
-                      className={cn(
-                        "relative z-10 h-full w-full object-cover object-top transition-transform duration-300",
-                        member.photoClassName
-                      )}
-                    />
+                    <div className="relative z-10 w-full h-full flex items-center justify-center p-2 pt-6 pb-8">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        width={500}
+                        height={700}
+                        draggable={false}
+                        className={cn(
+                          "h-full w-full object-contain drop-shadow-[0_4px_12px_rgba(26,16,64,0.35)] transition-transform duration-300",
+                          member.photoClassName
+                        )}
+                      />
+                    </div>
 
                     <div className="absolute bottom-0 inset-x-0 z-20 bg-[#1A1040]/90 px-3 py-1.5 flex justify-between items-center text-white font-stamp text-[10px] tracking-wider uppercase">
                       <span>STATUS: ACTIVE</span>
